@@ -29,7 +29,7 @@ function useTodayRacesWithAnimation(races) {
   const timer = useRef(null);
 
   useEffect(() => {
-    const isRacesUpdate = !races.map((e) => e.id).every(val => !prevRaces.current.map((e) => e.id).includes(val))
+    const isRacesUpdate = !races.map((e) => e.id).every(val => prevRaces.current.map((e) => e.id).includes(val))
     prevRaces.current = races;
     setIsRacesUpdate(isRacesUpdate);
   }, [races]);
