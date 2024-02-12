@@ -84,7 +84,7 @@
     "zengin-code": "^1.0.0-p20220130"
   },
   "engines": {
-    "node": "16.x.x"
+    "node": "20.x.x"
   },
   "packageManager": "yarn@4.1.0"
 }
