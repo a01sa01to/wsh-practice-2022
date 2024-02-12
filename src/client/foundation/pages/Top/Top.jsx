@@ -1,5 +1,5 @@
 import moment from "moment-timezone";
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import React, { Suspense, useCallback, useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
 
@@ -13,7 +13,8 @@ import { Color, Radius, Space } from "../../styles/variables";
 import { isSameDay } from "../../utils/DateUtils";
 import { authorizedJsonFetcher, jsonFetcher } from "../../utils/HttpUtils";
 
-import { ChargeDialog } from "./internal/ChargeDialog";
+// import { ChargeDialog } from "./internal/ChargeDialog";
+const ChargeDialog = React.lazy(() => import("./internal/ChargeDialog/ChargeDialog"));
 import { HeroImage } from "./internal/HeroImage";
 import { RecentRaceList } from "./internal/RecentRaceList";
 
@@ -171,7 +172,9 @@ export const Top = () => {
         )}
       </section>
 
-      <ChargeDialog ref={chargeDialogRef} onComplete={handleCompleteCharge} />
+      <Suspense fallback={null}>
+        <ChargeDialog ref={chargeDialogRef} onComplete={handleCompleteCharge} />
+      </Suspense>
     </Container>
   );
 };
