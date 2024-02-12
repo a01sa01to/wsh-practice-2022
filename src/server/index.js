@@ -1,6 +1,6 @@
 import "regenerator-runtime/runtime";
+import fastifySensible from "@fastify/sensible";
 import fastify from "fastify";
-import fastifySensible from "fastify-sensible";
 
 import { User } from "../model/index.js";
 
@@ -13,14 +13,7 @@ const IS_PRODUCTION = process.env.NODE_ENV === "production";
 
 const server = fastify({
   http2: true,
-  logger: IS_PRODUCTION
-    ? false
-    : {
-      prettyPrint: {
-        ignore: "pid,hostname",
-        translateTime: "SYS:HH:MM:ss",
-      },
-    },
+  logger: !IS_PRODUCTION
 });
 server.register(fastifySensible);
 
@@ -51,7 +44,10 @@ server.register(spaRoute);
 const start = async () => {
   try {
     await initialize();
-    await server.listen(process.env.PORT || 3000, "0.0.0.0");
+    server.listen({
+      host: "0.0.0.0",
+      port: process.env.PORT || 3000
+    });
   } catch (err) {
     server.log.error(err);
     process.exit(1);
