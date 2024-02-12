@@ -60,7 +60,7 @@ export const BettingTicketList = ({ children }) => {
   if (React.Children.count(children) === 0) {
     return (
       <Placeholder>
-        <i className="fas fa-ticket-alt" />
+        <svg height={18} viewBox="0 0 576 512" width={18} xmlns="http://www.w3.org/2000/svg"><path d="M128 160h320v192H128V160zm400 96c0 26.5 21.5 48 48 48v96c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48v-96c26.5 0 48-21.5 48-48s-21.5-48-48-48v-96c0-26.5 21.5-48 48-48h480c26.5 0 48 21.5 48 48v96c-26.5 0-48 21.5-48 48zm-48-104c0-13.3-10.7-24-24-24H120c-13.3 0-24 10.7-24 24v208c0 13.3 10.7 24 24 24h336c13.3 0 24-10.7 24-24V152z" /></svg>
         <div>購入した拳券はありません</div>
       </Placeholder>
     );
