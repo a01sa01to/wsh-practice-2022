@@ -86,7 +86,7 @@ export const OddsTable = ({ entries, isRaceClosed, odds, onClickOdds }) => {
     setFirstKey(parseInt(e.currentTarget.value, 10));
   }, []);
 
-  const headNumbers = Array(entries.length).map((val, idx) => idx + 1).filter(val => val != firstKey)
+  const headNumbers = Array(entries.length).fill(0).map((val, idx) => idx + 1).filter(val => val != firstKey)
   const filteredOdds = odds.filter((item) => item.key[0] === firstKey);
   const oddsMap = filteredOdds.reduce((acc, cur) => {
     const [, second, third] = cur.key;
