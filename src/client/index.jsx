@@ -1,7 +1,8 @@
 import React from "react";
-import ReactDOM from "react-dom";
 
 import { App } from "./foundation/App";
 
 const root = document.getElementById("root");
-ReactDOM.render(<App />, root);
+import("react-dom").then((ReactDOM) => {
+  ReactDOM.render(<App />, root);
+});
