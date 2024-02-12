@@ -12,11 +12,11 @@ import { useFetch } from "../../hooks/useFetch";
 import { Color, Radius, Space } from "../../styles/variables";
 import { isSameDay } from "../../utils/DateUtils";
 import { authorizedJsonFetcher, jsonFetcher } from "../../utils/HttpUtils";
+import { assets } from "../../utils/UrlUtils";
 
-// import { ChargeDialog } from "./internal/ChargeDialog";
-const ChargeDialog = React.lazy(() => import("./internal/ChargeDialog/ChargeDialog"));
-import { HeroImage } from "./internal/HeroImage";
 import { RecentRaceList } from "./internal/RecentRaceList";
+
+const ChargeDialog = React.lazy(() => import("./internal/ChargeDialog/ChargeDialog"));
 
 /**
  * @param {Model.Race[]} races
@@ -72,25 +72,10 @@ function useTodayRacesWithAnimation(races) {
   return racesToShow;
 }
 
-/**
- * @param {Model.Race[]} todayRaces
- * @returns {string | null}
- */
-function useHeroImage(todayRaces) {
-  const firstRaceId = todayRaces[0]?.id;
-  const url =
-    firstRaceId !== undefined
-      ? `/api/hero?firstRaceId=${firstRaceId}`
-      : "/api/hero";
-  const { data } = useFetch(url, jsonFetcher);
-
-  if (firstRaceId === undefined || data === null) {
-    return null;
-  }
-
-  const imageUrl = `${data.url}?${data.hash}`;
-  return imageUrl;
-}
+const HeroImage = styled.img`
+  display: block;
+  margin: 0 auto;
+`
 
 /** @type {React.VFC} */
 export const Top = () => {
@@ -140,11 +125,11 @@ export const Top = () => {
         )
       : [];
   const todayRacesToShow = useTodayRacesWithAnimation(todayRaces);
-  const heroImageUrl = useHeroImage(todayRaces);
+  const heroImageUrl = assets("/images/hero.jpg")
 
   return (
     <Container>
-      {heroImageUrl !== null && <HeroImage url={heroImageUrl} />}
+      <HeroImage alt="" src={heroImageUrl} />
 
       <Spacer mt={Space * 2} />
       {userData && (
