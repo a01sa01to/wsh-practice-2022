@@ -4455,12 +4455,12 @@ __metadata:
   linkType: hard
 
 "follow-redirects@npm:^1.14.7":
-  version: 1.14.9
-  resolution: "follow-redirects@npm:1.14.9"
+  version: 1.15.5
+  resolution: "follow-redirects@npm:1.15.5"
   peerDependenciesMeta:
     debug:
       optional: true
-  checksum: 10/01aee154da6f46cc37c115600d4b49c2a0b5a2e516418c176642463b63157769d3b91778c7b552fb01f94eb53618c1da0af81e66b5b7c8a2223f8e204eadc9ea
+  checksum: 10/d467f13c1c6aa734599b8b369cd7a625b20081af358f6204ff515f6f4116eb440de9c4e0c49f10798eeb0df26c95dd05d5e0d9ddc5786ab1a8a8abefe92929b4
   languageName: node
   linkType: hard
 
