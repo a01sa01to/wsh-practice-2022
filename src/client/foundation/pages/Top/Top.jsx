@@ -16,7 +16,7 @@ import { assets } from "../../utils/UrlUtils";
 
 import { RecentRaceList } from "./internal/RecentRaceList";
 
-const ChargeDialog = React.lazy(() => import("./internal/ChargeDialog/ChargeDialog"));
+const ChargeDialog = React.lazy(() => import("./internal/ChargeDialog"));
 
 /**
  * @param {Model.Race[]} races
