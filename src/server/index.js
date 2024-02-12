@@ -12,14 +12,15 @@ import { initialize } from "./typeorm/initialize.js";
 const IS_PRODUCTION = process.env.NODE_ENV === "production";
 
 const server = fastify({
+  http2: true,
   logger: IS_PRODUCTION
     ? false
     : {
-        prettyPrint: {
-          ignore: "pid,hostname",
-          translateTime: "SYS:HH:MM:ss",
-        },
+      prettyPrint: {
+        ignore: "pid,hostname",
+        translateTime: "SYS:HH:MM:ss",
       },
+    },
 });
 server.register(fastifySensible);
 
