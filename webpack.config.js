@@ -17,7 +17,6 @@ const DIST_PUBLIC = abs("./dist/public");
 /** @type {Array<import('webpack').Configuration>} */
 module.exports = [
   {
-    devtool: "inline-source-map",
     entry: path.join(SRC_ROOT, "client/index.jsx"),
     mode: "production",
     module: {
@@ -39,9 +38,14 @@ module.exports = [
                 [
                   "@babel/preset-env",
                   {
-                    modules: "cjs",
                     spec: true,
-                  },
+                    targets: {
+                      browsers: [
+                        "last 1 Chrome version",
+                        "last 1 Firefox version",
+                      ]
+                    },
+                  }
                 ],
                 "@babel/preset-react",
               ],
@@ -52,6 +56,7 @@ module.exports = [
     },
     name: "client",
     output: {
+      filename: '[name].bundle.js',
       path: DIST_PUBLIC,
     },
     plugins: [
@@ -68,7 +73,6 @@ module.exports = [
     target: "web",
   },
   {
-    devtool: "inline-source-map",
     entry: path.join(SRC_ROOT, "server/index.js"),
     externals: [nodeExternals()],
     mode: "development",
