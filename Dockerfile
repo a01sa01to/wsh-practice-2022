@@ -15,7 +15,7 @@ COPY yarn.lock ./
 COPY .yarnrc.yml ./
 COPY .yarn/ ./.yarn/
 RUN --mount=type=cache,target=/var/cache/yarn \
-    YARN_CACHE_FOLDER=/var/cache/yarn yarn --frozen-lockfile
+    YARN_CACHE_FOLDER=/var/cache/yarn yarn --immutable
 
 COPY . .
 
