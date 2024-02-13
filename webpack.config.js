@@ -65,6 +65,7 @@ module.exports = [
       }),
       new BundleAnalyzerPlugin({
         analyzerMode: "static",
+        defaultSizes: "gzip"
       })
     ],
     resolve: {
