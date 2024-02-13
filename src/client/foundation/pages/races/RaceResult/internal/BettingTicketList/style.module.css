@@ -1,0 +1,42 @@
+.itemwrapper {
+  padding: 8px 16px;
+}
+.itemwrapper:not(:last-child) {
+  border-bottom: 1px solid #a8a29e;
+}
+
+.cell {
+  padding: 8px;
+}
+
+.right {
+  text-align: right;
+}
+
+.table {
+  border-spacing: 0;
+}
+
+.th {
+  border-bottom: 2px solid #1c1917;
+}
+
+.placeholder {
+  align-items: center;
+  color: #a8a29e;
+  display: flex;
+  font-size: 1.25rem;
+  font-weight: bold;
+  gap: 16px;
+  justify-content: center;
+  padding: 16px;
+}
+
+.fa {
+  display: inline-block;
+  font-size: inherit;
+  height: 1em;
+  overflow: visible;
+  vertical-align: -0.125em;
+  width: 1.125em;
+}

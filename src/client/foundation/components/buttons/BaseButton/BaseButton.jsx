@@ -1,20 +1,7 @@
+import clsx from "clsx";
 import React from "react";
-import styled from "styled-components";
 
-const Wrapper = styled.button`
-  align-items: center;
-  appearance: none;
-  background: transparent;
-  border: none;
-  border-radius: 0;
-  cursor: pointer;
-  display: flex;
-  justify-content: center;
-
-  &:disabled {
-    cursor: initial;
-  }
-`;
+import style from "./button.module.css"
 
 /**
  * @typedef Props
@@ -23,5 +10,5 @@ const Wrapper = styled.button`
 
 /** @type {React.FC<Props & React.ButtonHTMLAttributes>} */
 export const BaseButton = (props) => {
-  return <Wrapper {...props} />;
+  return <button {...props} className={clsx(props.className, style.btn)} />;
 };

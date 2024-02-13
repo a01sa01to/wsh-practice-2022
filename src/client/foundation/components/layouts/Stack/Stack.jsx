@@ -1,14 +1,6 @@
 import React from "react";
-import styled from "styled-components";
 
-const Wrapper = styled.div`
-  align-items: ${({ $alignItems }) => $alignItems};
-  display: flex;
-  flex-direction: ${({ $horizontal }) => ($horizontal ? "row" : "column")};
-  flex-wrap: ${({ $wrap }) => $wrap};
-  gap: ${({ $gap }) => ($gap ? `${$gap}px` : undefined)};
-  justify-content: ${({ $justifyContent }) => $justifyContent};
-`;
+import style from "./style.module.css"
 
 /**
  * @typedef Props
@@ -24,40 +16,43 @@ export const Stack = (
   /** @type {React.PropsWithChildren<Props>} */
   { alignItems, as, children, gap, horizontal, justifyContent, wrap },
 ) => {
-  return (
-    <Wrapper
-      $alignItems={alignItems}
-      $gap={gap}
-      $horizontal={horizontal}
-      $justifyContent={justifyContent}
-      $wrap={wrap}
-      as={as}
+  if (as === "ul") {
+    return <ul
+      style={{
+        alignItems,
+        display: "flex",
+        flexDirection: horizontal ? "row" : "column",
+        flexWrap: wrap,
+        gap: gap ? `${gap}px` : undefined,
+        justifyContent
+      }}
     >
       {children}
-    </Wrapper>
+    </ul>
+  }
+
+  return (
+    <div
+      style={{
+        alignItems,
+        display: "flex",
+        flexDirection: horizontal ? "row" : "column",
+        flexWrap: wrap,
+        gap: gap ? `${gap}px` : undefined,
+        justifyContent
+      }}
+    >
+      {children}
+    </div>
   );
 };
 
-const ItemWrapper = styled.div`
-  flex-basis: ${({ $basis }) => $basis};
-  flex-grow: ${({ $grow }) => $grow};
-  flex-shrink: ${({ $shrink }) => $shrink};
-`;
-
-/**
- * @typedef ItemProps
- * @property {(string | React.ComponentType<any>)=} as
- * @property {(number | string)=} basis
- * @property {(number | string)=} grow
- * @property {(number | string)=} shrink
- */
-
-/** @type {React.FC<ItemProps>} */
-const Item = ({ as, basis, children, grow, shrink }) => {
+/** @type {React.FC} */
+const Item = ({ children }) => {
   return (
-    <ItemWrapper $basis={basis} $grow={grow} $shrink={shrink} as={as}>
+    <div className={style.item}>
       {children}
-    </ItemWrapper>
+    </div>
   );
 };
 Stack.Item = Item;

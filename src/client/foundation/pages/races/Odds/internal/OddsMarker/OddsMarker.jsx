@@ -1,14 +1,6 @@
 import React from "react";
-import styled from "styled-components";
 
-import { Space } from "../../../../../styles/variables";
-
-const Wrapper = styled.span`
-  background: rgba(74, 222, 128, ${({ $odds }) => Math.min(5 / $odds, 1.0)});
-  font-family: "Senobi-Gothic", sans-serif;
-  font-weight: bold;
-  padding: ${Space / 2}px ${Space * 1}px;
-`;
+import style from "./style.module.css";
 
 /**
  * @typedef Props
@@ -16,6 +8,10 @@ const Wrapper = styled.span`
  */
 
 /** @type {React.FC<Props>} */
-export const OddsMarker = ({ odds }) => {
-  return <Wrapper $odds={odds}> {odds.toFixed(1)}</Wrapper>;
+export const OddsMarker = ({ as, odds }) => {
+  if (as === "div") {
+    return <div className={style.wrapper} style={{ background: `rgba(74, 222, 128, ${Math.min(5 / odds, 1.0)})` }}> {odds.toFixed(1)}</div>;
+  }
+
+  return <span className={style.wrapper} style={{ background: `rgba(74, 222, 128, ${Math.min(5 / odds, 1.0)})` }}> {odds.toFixed(1)}</span>;
 };

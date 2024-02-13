@@ -1,15 +1,6 @@
 import React, { forwardRef } from "react";
-import styled from "styled-components";
 
-import { Color } from "../../../styles/variables";
-
-const StyledDialog = styled.dialog`
-  border: 1px solid ${Color.mono[400]};
-
-  &::backdrop {
-    background-color: rgba(0, 0, 0, 0.25);
-  }
-`;
+import style from "./style.module.css";
 
 /**
  * @typedef Props
@@ -20,9 +11,9 @@ const StyledDialog = styled.dialog`
 /** @type {React.ForwardRefExoticComponent<{Props>} */
 export const Dialog = forwardRef(({ children, onClose }, ref) => {
   return (
-    <StyledDialog ref={ref} onClose={onClose}>
+    <dialog ref={ref} className={style.dialog} onClose={onClose}>
       {children}
-    </StyledDialog>
+    </dialog>
   );
 });
 

@@ -1,0 +1,25 @@
+.wrapper {
+  display: flex;
+}
+
+.wrapper div {
+  border: 1px solid #1c1917;
+  font-weight: bold;
+  height: 24px;
+  text-align: center;
+  width: 24px;
+}
+
+.wrapper div:not(:last-child) {
+  margin-right: 7px;
+  position: relative;
+}
+
+.wrapper div:not(:last-child)::after {
+  border: 2px solid #1c1917;
+  content: "";
+  left: 100%;
+  position: absolute;
+  top: calc(50% - 1px);
+  width: 8px;
+}

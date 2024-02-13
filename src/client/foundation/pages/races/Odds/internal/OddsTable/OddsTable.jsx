@@ -1,68 +1,11 @@
 import React, { useCallback, useState } from "react";
-import styled from "styled-components";
 
 import { BaseButton } from "../../../../../components/buttons/BaseButton";
 import { Spacer } from "../../../../../components/layouts/Spacer";
 import { Stack } from "../../../../../components/layouts/Stack";
-import { Color, FontSize, Space } from "../../../../../styles/variables";
 import { OddsMarker } from "../OddsMarker";
 
-const ScrollWrapper = styled.div`
-  overflow-x: auto;
-`;
-
-const RankLabel = styled.label`
-  width: 64px;
-`;
-
-const Table = styled.table`
-  border-collapse: collapse;
-  border-color: ${Color.mono[800]};
-  border-style: solid;
-  border-width: 2px 0 2px;
-  font-size: ${FontSize.SMALL};
-  height: 100%;
-  min-width: calc(1024px - ${Space * 3}px * 2);
-  table-layout: fixed;
-  text-align: center;
-  width: 100%;
-
-  th,
-  td {
-    border-color: ${Color.mono[800]};
-    border-style: solid;
-    border-width: 1px;
-    height: 100%;
-    padding: 0;
-  }
-
-  th {
-    font-weight: normal;
-    padding: 0 ${Space * 1}px;
-  }
-`;
-
-const BuyButton = styled(BaseButton)`
-  height: 100%;
-  padding: ${Space * 2}px;
-  width: 100%;
-
-  &:disabled {
-    background: ${Color.mono[100]};
-  }
-
-  &:not(:disabled):hover {
-    background: ${Color.mono[200]};
-  }
-`;
-
-const InactiveBuyButton = styled.div`
-  cursor: default;
-  height: 100%;
-  padding: ${Space * 2}px;
-  width: 100%;
-`;
-
+import style from "./style.module.css"
 /**
  * @param {number} second
  * @param {number} third
@@ -97,7 +40,7 @@ export const OddsTable = ({ entries, isRaceClosed, odds, onClickOdds }) => {
   return (
     <div>
       <Stack horizontal>
-        <RankLabel>1位軸</RankLabel>
+        <label className={style.ranklabel}>1位軸</label>
         <select onChange={handleChange} value={firstKey}>
           {entries.map((entry) => (
             <option key={entry.id} value={entry.number}>
@@ -107,17 +50,17 @@ export const OddsTable = ({ entries, isRaceClosed, odds, onClickOdds }) => {
         </select>
       </Stack>
 
-      <Spacer mt={Space * 2} />
-      <ScrollWrapper>
+      <Spacer mt2 />
+      <div className={style.scrollwrapper}>
         <div>
-          <Table>
+          <table className={style.table}>
             <thead>
               <tr>
-                <th width="64px">2位</th>
-                <th width="32px"></th>
+                <th className={style.th} width="64px">2位</th>
+                <th className={style.th} width="32px"></th>
 
                 {headNumbers.map((second) => (
-                  <th key={second} width="auto">
+                  <th key={second} className={style.th} width="auto">
                     {second}
                   </th>
                 ))}
@@ -127,27 +70,27 @@ export const OddsTable = ({ entries, isRaceClosed, odds, onClickOdds }) => {
             <tbody>
               {headNumbers.map((third, i) => (
                 <tr key={third}>
-                  {i === 0 && <th rowSpan={headNumbers.length}>3位</th>}
+                  {i === 0 && <th className={style.th} rowSpan={headNumbers.length}>3位</th>}
 
-                  <th>{third}</th>
+                  <th className={style.th}>{third}</th>
 
                   {headNumbers.map((second) => {
                     const item = oddsMap[mapKey(second, third)];
 
                     return (
-                      <td key={second} width="auto">
+                      <td key={second} className={style.td} width="auto">
                         {second !== third ? (
                           isRaceClosed ? (
-                            <InactiveBuyButton>
+                            <div className={style.inactivebuybutton}>
                               <OddsMarker odds={item.odds} />
-                            </InactiveBuyButton>
+                            </div>
                           ) : (
-                            <BuyButton onClick={() => onClickOdds(item)}>
+                            <BaseButton className={style.buybutton} onClick={() => onClickOdds(item)}>
                               <OddsMarker odds={item.odds} />
-                            </BuyButton>
+                            </BaseButton>
                           )
                         ) : (
-                          <BuyButton disabled>-</BuyButton>
+                          <BaseButton disabled className={style.buybutton}>-</BaseButton>
                         )}
                       </td>
                     );
@@ -155,9 +98,9 @@ export const OddsTable = ({ entries, isRaceClosed, odds, onClickOdds }) => {
                 </tr>
               ))}
             </tbody>
-          </Table>
+          </table>
         </div>
-      </ScrollWrapper>
+      </div>
     </div>
   );
 };

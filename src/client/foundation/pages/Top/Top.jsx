@@ -1,7 +1,6 @@
 import dayjs from "dayjs";
 import React, { Suspense, useCallback, useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
-import styled from "styled-components";
 
 import { Container } from "../../components/layouts/Container";
 import { Spacer } from "../../components/layouts/Spacer";
@@ -9,12 +8,12 @@ import { Stack } from "../../components/layouts/Stack";
 import { Heading } from "../../components/typographies/Heading";
 import { useAuthorizedFetch } from "../../hooks/useAuthorizedFetch";
 import { useFetch } from "../../hooks/useFetch";
-import { Color, Radius, Space } from "../../styles/variables";
 import { isSameDay } from "../../utils/DateUtils";
 import { authorizedJsonFetcher, jsonFetcher } from "../../utils/HttpUtils";
 import { assets } from "../../utils/UrlUtils";
 
 import { RecentRaceList } from "./internal/RecentRaceList";
+import style from "./style.module.css";
 
 const ChargeDialog = React.lazy(() => import("./internal/ChargeDialog"));
 
@@ -72,25 +71,9 @@ function useTodayRacesWithAnimation(races) {
   return racesToShow;
 }
 
-const HeroImage = styled.img`
-  display: block;
-  margin: 0 auto;
-`
-
 /** @type {React.VFC} */
 export const Top = () => {
   const { date = dayjs().format("YYYY-MM-DD") } = useParams();
-
-  const ChargeButton = styled.button`
-    background: ${Color.mono[700]};
-    border-radius: ${Radius.MEDIUM};
-    color: ${Color.mono[0]};
-    padding: ${Space * 1}px ${Space * 2}px;
-
-    &:hover {
-      background: ${Color.mono[800]};
-    }
-  `;
 
   const chargeDialogRef = useRef(null);
 
@@ -129,9 +112,9 @@ export const Top = () => {
 
   return (
     <Container>
-      <HeroImage alt="" src={heroImageUrl} />
+      <img alt="" className={style.hero} src={heroImageUrl} />
 
-      <Spacer mt={Space * 2} />
+      <Spacer mt2 />
       {userData && (
         <Stack horizontal alignItems="center" justifyContent="space-between">
           <div>
@@ -139,13 +122,13 @@ export const Top = () => {
             <p>払戻金: {userData.payoff}Yeen</p>
           </div>
 
-          <ChargeButton onClick={handleClickChargeButton}>
+          <button className={style.chargeBtn} onClick={handleClickChargeButton}>
             チャージ
-          </ChargeButton>
+          </button>
         </Stack>
       )}
 
-      <Spacer mt={Space * 2} />
+      <Spacer mt2 />
       <section>
         <Heading as="h1">本日のレース</Heading>
         {todayRacesToShow.length > 0 && (

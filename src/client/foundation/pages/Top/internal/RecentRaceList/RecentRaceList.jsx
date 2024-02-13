@@ -1,44 +1,21 @@
 import React, { useEffect, useState } from "react";
-import styled from "styled-components";
 
 import { LinkButton } from "../../../../components/buttons/LinkButton";
 import { Spacer } from "../../../../components/layouts/Spacer";
 import { Stack } from "../../../../components/layouts/Stack";
 import { TrimmedImage } from "../../../../components/media/TrimmedImage";
 import { easeOutCubic, useAnimation } from "../../../../hooks/useAnimation";
-import { Color, FontSize, Radius, Space } from "../../../../styles/variables";
 import { formatCloseAt } from "../../../../utils/DateUtils";
+
+import style from "./style.module.css";
 
 export const RecentRaceList = ({ children }) => {
   return (
-    <Stack as="ul" gap={Space * 2}>
+    <Stack as="ul" gap={16}>
       {children}
     </Stack>
   );
 };
-
-const ItemWrapper = styled.li`
-  background: ${Color.mono[0]};
-  border-radius: ${Radius.MEDIUM};
-  opacity: ${({ $opacity }) => $opacity};
-  padding: ${Space * 3}px;
-`;
-
-const RaceButton = styled(LinkButton)`
-  background: ${Color.mono[700]};
-  border-radius: ${Radius.MEDIUM};
-  color: ${Color.mono[0]};
-  padding: ${Space * 1}px ${Space * 2}px;
-
-  &:hover {
-    background: ${Color.mono[800]};
-  }
-`;
-
-const RaceTitle = styled.h2`
-  font-size: ${FontSize.LARGE};
-  font-weight: bold;
-`;
 
 /**
  * @typedef ItemProps
@@ -82,23 +59,23 @@ const Item = ({ race }) => {
   }, [race.id, startAnimation, abortAnimation, resetAnimation]);
 
   return (
-    <ItemWrapper $opacity={opacity}>
+    <li className={style.itemwrapper} style={{ opacity }} >
       <Stack horizontal alignItems="center" justifyContent="space-between">
-        <Stack gap={Space * 1}>
-          <RaceTitle>{race.name}</RaceTitle>
+        <Stack gap={8}>
+          <h2 className={style.racetitle}>{race.name}</h2>
           <p>{closeAtText}</p>
         </Stack>
 
-        <Spacer mr={Space * 2} />
+        <Spacer mr2 />
 
-        <Stack.Item grow={0} shrink={0}>
-          <Stack horizontal alignItems="center" gap={Space * 2}>
+        <Stack.Item>
+          <Stack horizontal alignItems="center" gap={16}>
             <TrimmedImage height={100} src={race.image} width={100} />
-            <RaceButton to={`/races/${race.id}/race-card`}>投票</RaceButton>
+            <LinkButton className={style.racebtn} to={`/races/${race.id}/race-card`}>投票</LinkButton>
           </Stack>
         </Stack.Item>
       </Stack>
-    </ItemWrapper>
+    </li>
   );
 };
 RecentRaceList.Item = Item;

@@ -1,21 +1,9 @@
 import React from "react";
-import styled from "styled-components";
 
 import { Stack } from "../../../../../components/layouts/Stack";
 import { TrimmedImage } from "../../../../../components/media/TrimmedImage";
-import { Color, FontSize, Space } from "../../../../../styles/variables";
 
-const PlayerNumber = styled.span`
-  border: 1px solid ${Color.mono[900]};
-  font-weight: bold;
-  height: 24px;
-  text-align: center;
-  width: 24px;
-`;
-
-const PlayerName = styled.span`
-  font-size: ${FontSize.SMALL};
-`;
+import style from "./style.module.css"
 
 /**
  * @typedef ItemProps
@@ -27,7 +15,7 @@ const PlayerName = styled.span`
 /** @type {React.VFC<ItemProps>} */
 const Item = ({ image, name, number }) => {
   return (
-    <Stack gap={Space * 1}>
+    <Stack gap={8}>
       <TrimmedImage
         alt={`${name}選手のプロフィール写真`}
         height={100}
@@ -35,9 +23,9 @@ const Item = ({ image, name, number }) => {
         width={100}
       />
 
-      <Stack horizontal alignItems="center" gap={Space / 2} wrap="wrap">
-        <PlayerNumber>{number}</PlayerNumber>
-        <PlayerName>{name}</PlayerName>
+      <Stack horizontal alignItems="center" gap={4} wrap="wrap">
+        <span className={style.playerno}>{number}</span>
+        <span className={style.playername}>{name}</span>
       </Stack>
     </Stack>
   );
@@ -45,7 +33,7 @@ const Item = ({ image, name, number }) => {
 
 export const PlayerPictureList = ({ children }) => {
   return (
-    <Stack horizontal gap={Space * 2} wrap="wrap">
+    <Stack horizontal gap={16} wrap="wrap">
       {children}
     </Stack>
   );

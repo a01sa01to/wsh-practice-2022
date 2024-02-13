@@ -1,0 +1,19 @@
+.wrapper {
+  align-items: center;
+  color: #a8a29e;
+  display: flex;
+  font-size: 1.25rem;
+  font-weight: bold;
+  gap: 16px;
+  justify-content: center;
+  padding: 16px;
+}
+
+.fa {
+  display: inline-block;
+  font-size: inherit;
+  height: 1em;
+  overflow: visible;
+  vertical-align: -0.125em;
+  width: 0.875em;
+}

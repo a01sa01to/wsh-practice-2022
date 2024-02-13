@@ -29,6 +29,13 @@ module.exports = [
           type: "asset/source",
         },
         {
+          test: /\.css$/,
+          use: [
+            "style-loader",
+            { loader: "css-loader?modules", options: { modules: "local" } }
+          ]
+        },
+        {
           exclude: /[\\/]esm[\\/]/,
           test: /\.jsx?$/,
           use: {
