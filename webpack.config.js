@@ -2,8 +2,11 @@
 const path = require("path");
 
 const CopyPlugin = require("copy-webpack-plugin");
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer");
 const nodeExternals = require("webpack-node-externals");
+const RemoveEmptyScriptsPlugin = require("webpack-remove-empty-scripts");
 
 function abs(...args) {
   return path.join(__dirname, ...args);
@@ -31,7 +34,13 @@ module.exports = [
         {
           test: /\.css$/,
           use: [
-            "style-loader",
+            {
+              loader: MiniCssExtractPlugin.loader,
+              options: {
+                esModule: false,
+              },
+            },
+            // "style-loader",
             { loader: "css-loader?modules", options: { modules: "local" } }
           ]
         },
@@ -62,6 +71,12 @@ module.exports = [
       ],
     },
     name: "client",
+    optimization: {
+      minimizer: [
+        `...`,
+        new CssMinimizerPlugin(),
+      ],
+    },
     output: {
       filename: '[name].bundle.js',
       path: DIST_PUBLIC,
@@ -73,7 +88,11 @@ module.exports = [
       new BundleAnalyzerPlugin({
         analyzerMode: "static",
         defaultSizes: "gzip"
-      })
+      }),
+      new MiniCssExtractPlugin({
+        filename: "[name].css",
+      }),
+      new RemoveEmptyScriptsPlugin(),
     ],
     resolve: {
       extensions: [".js", ".jsx"],
