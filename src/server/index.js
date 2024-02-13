@@ -46,7 +46,7 @@ server.addHook("onRequest", async (req, res) => {
     res.header("Connection", "close")
   }
   else {
-    res.header("Cache-Control", "immutable");
+    res.header("Cache-Control", "immutable; max-age=31536000");
     res.header("Connection", "keep-alive");
   }
 });
