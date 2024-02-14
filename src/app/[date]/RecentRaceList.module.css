@@ -1,0 +1,35 @@
+@keyframes fadein {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.itemwrapper {
+  animation-duration: 500ms;
+  animation-fill-mode: both;
+  animation-name: fadein;
+  animation-timing-function: cubic-bezier(0.2, 0.6, 0.35, 1);
+  background: #fff;
+  border-radius: 12px;
+  opacity: 0;
+  padding: 24px;
+}
+
+.racebtn {
+  background: #44403c;
+  border-radius: 12px;
+  color: #fff;
+  padding: 8px 16px;
+}
+
+.racebtn:hover {
+  background: #292524;
+}
+
+.racetitle {
+  font-size: 1.25rem;
+  font-weight: bold;
+}

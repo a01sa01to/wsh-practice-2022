@@ -1,3 +1,7 @@
+import dayjs from "dayjs";
+
+import DatePage from "./[date]/page";
+
 export default function Page() {
-  return <h1>Hello, Next.js!</h1>
+  return <DatePage params={{ date: dayjs().format("YYYY-MM-DD") }} />;
 }

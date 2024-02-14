@@ -1,0 +1,17 @@
+.hero {
+  width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+.chargeBtn {
+  background: #44403c;
+  border-radius: 12px;
+  color: #fff;
+  padding: 8px 16px;
+}
+
+.chargeBtn:hover {
+  background: #292524;
+}
