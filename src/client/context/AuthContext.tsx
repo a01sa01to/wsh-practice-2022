@@ -1,6 +1,7 @@
 "use client";
 
-import React, { Dispatch, SetStateAction, createContext, useCallback, useContext, useMemo, useState } from "react";
+import type { Dispatch, SetStateAction} from "react";
+import React, { createContext, useCallback, useContext, useMemo, useState } from "react";
 
 const AuthContext = createContext<{ userId: string | null, setUserId: Dispatch<SetStateAction<string>> }>({
   setUserId: () => {

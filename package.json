@@ -17,6 +17,7 @@
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "lint": "next lint",
+    "lint:fix": "next lint --fix",
     "init:seeds": "ts-node-transpile-only scripts/init.js"
   },
   "devDependencies": {
