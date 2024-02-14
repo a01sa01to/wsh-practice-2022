@@ -41,7 +41,7 @@ server.addHook("onRequest", async (req, res) => {
 });
 
 server.addHook("onRequest", async (req, res) => {
-  if (req.url.includes("api")) {
+  if (req.url.includes("api") && !req.url.includes("zengin")) {
     res.header("Cache-Control", "no-cache, no-store, no-transform");
     res.header("Connection", "close")
   }

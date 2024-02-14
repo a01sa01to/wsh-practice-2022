@@ -1,12 +1,13 @@
 import { motion } from "framer-motion";
 import React, { forwardRef, useCallback, useState } from "react";
-import zenginCode from "zengin-code";
 
 import { Dialog } from "../../../../components/layouts/Dialog";
 import { Spacer } from "../../../../components/layouts/Spacer";
 import { Stack } from "../../../../components/layouts/Stack";
 import { Heading } from "../../../../components/typographies/Heading";
+import { useFetch } from "../../../../hooks/useFetch";
 import { useMutation } from "../../../../hooks/useMutation";
+import { jsonFetcher } from "../../../../utils/HttpUtils";
 
 const CANCEL = "cancel";
 const CHARGE = "charge";
@@ -66,11 +67,9 @@ export const ChargeDialog = forwardRef(({ onComplete }, ref) => {
     [charge, bankCode, branchCode, accountNo, amount, onComplete, clearForm],
   );
 
-  const bankList = Object.entries(zenginCode).map(([code, { name }]) => ({
-    code,
-    name,
-  }));
-  const bank = zenginCode[bankCode];
+  const zenginCode = useFetch("/api/zengin", jsonFetcher).data;
+  const bankList = zenginCode == null ? [] : Object.entries(zenginCode).map(([code, { name }]) => ({ code, name }));
+  const bank = zenginCode == null ? null : zenginCode[bankCode];
   const branch = bank?.branches[branchCode];
 
   return (
