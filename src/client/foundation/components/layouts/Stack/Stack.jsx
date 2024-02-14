@@ -1,6 +1,6 @@
 import React from "react";
 
-import style from "./style.module.css"
+import style from "./style.module.css";
 
 /**
  * @typedef Props
@@ -17,18 +17,20 @@ export const Stack = (
   { alignItems, as, children, gap, horizontal, justifyContent, wrap },
 ) => {
   if (as === "ul") {
-    return <ul
-      style={{
-        alignItems,
-        display: "flex",
-        flexDirection: horizontal ? "row" : "column",
-        flexWrap: wrap,
-        gap: gap ? `${gap}px` : undefined,
-        justifyContent
-      }}
-    >
-      {children}
-    </ul>
+    return (
+      <ul
+        style={{
+          alignItems,
+          display: "flex",
+          flexDirection: horizontal ? "row" : "column",
+          flexWrap: wrap,
+          gap: gap ? `${gap}px` : undefined,
+          justifyContent,
+        }}
+      >
+        {children}
+      </ul>
+    );
   }
 
   return (
@@ -39,7 +41,7 @@ export const Stack = (
         flexDirection: horizontal ? "row" : "column",
         flexWrap: wrap,
         gap: gap ? `${gap}px` : undefined,
-        justifyContent
+        justifyContent,
       }}
     >
       {children}
@@ -49,10 +51,6 @@ export const Stack = (
 
 /** @type {React.FC} */
 const Item = ({ children }) => {
-  return (
-    <div className={style.item}>
-      {children}
-    </div>
-  );
+  return <div className={style.item}>{children}</div>;
 };
 Stack.Item = Item;

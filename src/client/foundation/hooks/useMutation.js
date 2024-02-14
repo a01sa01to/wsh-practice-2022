@@ -47,12 +47,12 @@ export function useMutation(apiPath, { auth, method }) {
           body: JSON.stringify(data),
           headers: auth ? { "x-app-userid": userId } : {},
           method,
-        }).then(res => {
+        }).then((res) => {
           if (!res.ok) {
             throw new Error("failed to fetch");
           }
           return res.json();
-        })
+        });
 
         setResult((cur) => ({
           ...cur,

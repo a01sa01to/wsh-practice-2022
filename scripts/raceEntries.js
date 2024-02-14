@@ -36,12 +36,15 @@ export async function insertRaceEntries() {
       .limit(Math.round(Math.random() * 6) + 6)
       .getMany();
 
-    const predictionMarks = (
-      ["◎", "○", "△", "×", ...Array(players.length).fill("")].slice(
-        0,
-        players.length,
-      )
-    ).sort(() => Math.random() - 0.5);
+    const predictionMarks = [
+      "◎",
+      "○",
+      "△",
+      "×",
+      ...Array(players.length).fill(""),
+    ]
+      .slice(0, players.length)
+      .sort(() => Math.random() - 0.5);
 
     const entries = players.map((player, idx) => {
       const { first, others, second, third } = {
@@ -58,7 +61,12 @@ export async function insertRaceEntries() {
       const totalRaces = first + second + third + others;
 
       return new RaceEntry({
-        comment: COMMENTS[Math.min(Math.floor(Math.random() * COMMENTS.length, COMMENTS.length - 1))],
+        comment:
+          COMMENTS[
+            Math.min(
+              Math.floor(Math.random() * COMMENTS.length, COMMENTS.length - 1),
+            )
+          ],
         first,
         firstRate: (totalRaces === 0 ? 0 : first / totalRaces) * 100,
         id: uuid(),

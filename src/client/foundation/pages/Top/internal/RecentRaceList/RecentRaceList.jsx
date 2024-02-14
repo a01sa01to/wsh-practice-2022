@@ -37,7 +37,7 @@ const Item = ({ race, style: propStyle }) => {
   }, [race.closeAt]);
 
   return (
-    <li className={style.itemwrapper} style={propStyle} >
+    <li className={style.itemwrapper} style={propStyle}>
       <Stack horizontal alignItems="center" justifyContent="space-between">
         <Stack gap={8}>
           <h2 className={style.racetitle}>{race.name}</h2>
@@ -48,8 +48,17 @@ const Item = ({ race, style: propStyle }) => {
 
         <Stack.Item>
           <Stack horizontal alignItems="center" gap={16}>
-            <TrimmedImage height={100} src={race.image.replace(".jpg", "_thumb.webp")} width={100} />
-            <LinkButton className={style.racebtn} to={`/races/${race.id}/race-card`}>投票</LinkButton>
+            <TrimmedImage
+              height={100}
+              src={race.image.replace(".jpg", "_thumb.webp")}
+              width={100}
+            />
+            <LinkButton
+              className={style.racebtn}
+              to={`/races/${race.id}/race-card`}
+            >
+              投票
+            </LinkButton>
           </Stack>
         </Stack.Item>
       </Stack>

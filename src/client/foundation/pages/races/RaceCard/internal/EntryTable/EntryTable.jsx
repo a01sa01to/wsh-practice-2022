@@ -1,7 +1,7 @@
 import clsx from "clsx";
 import React from "react";
 
-import style from "./style.module.css"
+import style from "./style.module.css";
 /**
  * @typedef Props
  * @property {Model.RaceEntry[]} entries
@@ -23,7 +23,9 @@ export const EntryTable = ({ entries }) => {
             <th className={style.th} rowSpan={2} width="48px">
               予想
             </th>
-            <th className={style.th} colSpan={3}>決まり手</th>
+            <th className={style.th} colSpan={3}>
+              決まり手
+            </th>
 
             <th className={style.th} rowSpan={2} width="24px">
               1位
@@ -45,14 +47,24 @@ export const EntryTable = ({ entries }) => {
               3位内率
             </th>
 
-            <th className={clsx(style.th, style.left)} rowSpan={2} width="250px">
+            <th
+              className={clsx(style.th, style.left)}
+              rowSpan={2}
+              width="250px"
+            >
               コメント
             </th>
           </tr>
           <tr>
-            <th className={style.th} width="64px">グー</th>
-            <th className={style.th} width="64px">チョキ</th>
-            <th className={style.th} width="64px">パー</th>
+            <th className={style.th} width="64px">
+              グー
+            </th>
+            <th className={style.th} width="64px">
+              チョキ
+            </th>
+            <th className={style.th} width="64px">
+              パー
+            </th>
           </tr>
         </thead>
         <tbody>

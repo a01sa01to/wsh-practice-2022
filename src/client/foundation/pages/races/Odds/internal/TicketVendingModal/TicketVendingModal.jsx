@@ -10,11 +10,10 @@ import { useAuthorizedFetch } from "../../../../../hooks/useAuthorizedFetch";
 import { useMutation } from "../../../../../hooks/useMutation";
 import { authorizedJsonFetcher } from "../../../../../utils/HttpUtils";
 
-import style from "./style.module.css"
+import style from "./style.module.css";
 
 const CANCEL = "cancel";
 const BUY = "buy";
-
 
 /**
  * @typedef Props

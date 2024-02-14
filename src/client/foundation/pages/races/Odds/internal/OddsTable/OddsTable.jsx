@@ -5,7 +5,7 @@ import { Spacer } from "../../../../../components/layouts/Spacer";
 import { Stack } from "../../../../../components/layouts/Stack";
 import { OddsMarker } from "../OddsMarker";
 
-import style from "./style.module.css"
+import style from "./style.module.css";
 /**
  * @param {number} second
  * @param {number} third
@@ -29,7 +29,10 @@ export const OddsTable = ({ entries, isRaceClosed, odds, onClickOdds }) => {
     setFirstKey(parseInt(e.currentTarget.value, 10));
   }, []);
 
-  const headNumbers = Array(entries.length).fill(0).map((val, idx) => idx + 1).filter(val => val != firstKey)
+  const headNumbers = Array(entries.length)
+    .fill(0)
+    .map((val, idx) => idx + 1)
+    .filter((val) => val != firstKey);
   const filteredOdds = odds.filter((item) => item.key[0] === firstKey);
   const oddsMap = filteredOdds.reduce((acc, cur) => {
     const [, second, third] = cur.key;
@@ -56,7 +59,9 @@ export const OddsTable = ({ entries, isRaceClosed, odds, onClickOdds }) => {
           <table className={style.table}>
             <thead>
               <tr>
-                <th className={style.th} width="64px">2位</th>
+                <th className={style.th} width="64px">
+                  2位
+                </th>
                 <th className={style.th} width="32px"></th>
 
                 {headNumbers.map((second) => (
@@ -70,7 +75,11 @@ export const OddsTable = ({ entries, isRaceClosed, odds, onClickOdds }) => {
             <tbody>
               {headNumbers.map((third, i) => (
                 <tr key={third}>
-                  {i === 0 && <th className={style.th} rowSpan={headNumbers.length}>3位</th>}
+                  {i === 0 && (
+                    <th className={style.th} rowSpan={headNumbers.length}>
+                      3位
+                    </th>
+                  )}
 
                   <th className={style.th}>{third}</th>
 
@@ -85,12 +94,17 @@ export const OddsTable = ({ entries, isRaceClosed, odds, onClickOdds }) => {
                               <OddsMarker odds={item.odds} />
                             </div>
                           ) : (
-                            <BaseButton className={style.buybutton} onClick={() => onClickOdds(item)}>
+                            <BaseButton
+                              className={style.buybutton}
+                              onClick={() => onClickOdds(item)}
+                            >
                               <OddsMarker odds={item.odds} />
                             </BaseButton>
                           )
                         ) : (
-                          <BaseButton disabled className={style.buybutton}>-</BaseButton>
+                          <BaseButton disabled className={style.buybutton}>
+                            -
+                          </BaseButton>
                         )}
                       </td>
                     );

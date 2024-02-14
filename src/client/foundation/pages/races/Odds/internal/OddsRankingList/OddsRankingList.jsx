@@ -5,7 +5,7 @@ import { EntryCombination } from "../../../../../components/displays/EntryCombin
 import { Stack } from "../../../../../components/layouts/Stack";
 import { OddsMarker } from "../OddsMarker";
 
-import style from "./style.module.css"
+import style from "./style.module.css";
 
 /**
  * @typedef Props
@@ -30,7 +30,10 @@ export const OddsRankingList = ({ isRaceClosed, odds, onClickOdds }) => {
               </Stack>
             </div>
           ) : (
-            <BaseButton className={style.buybutton} onClick={() => onClickOdds(item)}>
+            <BaseButton
+              className={style.buybutton}
+              onClick={() => onClickOdds(item)}
+            >
               <Stack horizontal alignItems="center" gap={16}>
                 <div className={style.rankno}>{i + 1}.</div>
                 <EntryCombination numbers={item.key} />

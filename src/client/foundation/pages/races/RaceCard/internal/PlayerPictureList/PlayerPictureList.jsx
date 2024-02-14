@@ -3,7 +3,7 @@ import React from "react";
 import { Stack } from "../../../../../components/layouts/Stack";
 import { TrimmedImage } from "../../../../../components/media/TrimmedImage";
 
-import style from "./style.module.css"
+import style from "./style.module.css";
 
 /**
  * @typedef ItemProps

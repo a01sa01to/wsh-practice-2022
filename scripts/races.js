@@ -65,7 +65,9 @@ export async function insertRaces(startDate, endDate) {
             3,
             "0",
           )}.webp`,
-          name: NAMES[Math.min(Math.floor(Math.random() * NAMES.length), NAMES.length - 1)],
+          name: NAMES[
+            Math.min(Math.floor(Math.random() * NAMES.length), NAMES.length - 1)
+          ],
           startAt: startAt.toDate(),
         }),
       );

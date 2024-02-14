@@ -12,7 +12,13 @@ import style from "./style.module.css";
 /** @type {React.FC<Props>} */
 export const Section = ({ children, dark, shrink }) => {
   return (
-    <section className={clsx(style.wrapper, dark && style.dark, shrink && style.shrink)}>
+    <section
+      className={clsx(
+        style.wrapper,
+        dark && style.dark,
+        shrink && style.shrink,
+      )}
+    >
       {children}
     </section>
   );

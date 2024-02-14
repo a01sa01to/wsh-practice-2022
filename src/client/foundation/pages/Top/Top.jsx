@@ -31,7 +31,7 @@ export const Top = () => {
   const { data: raceData } = useFetch("/api/races", jsonFetcher);
 
   const handleClickChargeButton = useCallback(async () => {
-    setZenginCode(await fetch("/api/zengin").then(res => res.json()))
+    setZenginCode(await fetch("/api/zengin").then((res) => res.json()));
 
     if (chargeDialogRef.current === null) {
       return;
@@ -47,15 +47,15 @@ export const Top = () => {
   const todayRaces =
     raceData != null
       ? [...raceData.races]
-        .sort(
-          (/** @type {Model.Race} */ a, /** @type {Model.Race} */ b) =>
-            dayjs(a.startAt) - dayjs(b.startAt),
-        )
-        .filter((/** @type {Model.Race} */ race) =>
-          isSameDay(race.startAt, date),
-        )
+          .sort(
+            (/** @type {Model.Race} */ a, /** @type {Model.Race} */ b) =>
+              dayjs(a.startAt) - dayjs(b.startAt),
+          )
+          .filter((/** @type {Model.Race} */ race) =>
+            isSameDay(race.startAt, date),
+          )
       : [];
-  const heroImageUrl = assets("/images/hero.webp")
+  const heroImageUrl = assets("/images/hero.webp");
 
   return (
     <Container>
@@ -82,7 +82,11 @@ export const Top = () => {
           <div>
             <RecentRaceList>
               {todayRaces.map((race, idx) => (
-                <RecentRaceList.Item key={race.id} race={race} style={{ animationDelay: `${idx * 100}ms` }} />
+                <RecentRaceList.Item
+                  key={race.id}
+                  race={race}
+                  style={{ animationDelay: `${idx * 100}ms` }}
+                />
               ))}
             </RecentRaceList>
           </div>
@@ -90,7 +94,11 @@ export const Top = () => {
       </section>
 
       <Suspense fallback={null}>
-        <ChargeDialog ref={chargeDialogRef} onComplete={handleCompleteCharge} zenginCode={zenginCode} />
+        <ChargeDialog
+          ref={chargeDialogRef}
+          onComplete={handleCompleteCharge}
+          zenginCode={zenginCode}
+        />
       </Suspense>
     </Container>
   );

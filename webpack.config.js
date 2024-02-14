@@ -2,7 +2,7 @@
 const path = require("path");
 
 const CopyPlugin = require("copy-webpack-plugin");
-const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
+const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer");
 const nodeExternals = require("webpack-node-externals");
@@ -17,27 +17,26 @@ const PUBLIC_ROOT = abs("./public");
 const DIST_ROOT = abs("./dist");
 const DIST_PUBLIC = abs("./dist/public");
 
-
 // a, b, c, ..., z, A, B, ..., Z, _, aa, ab, ... みたいな className を生成するやつ
 function* generateShortName() {
-  const startChars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_'
-  const chars = startChars + '0123456789'
-  let iterationCount = 0
+  const startChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_";
+  const chars = startChars + "0123456789";
+  let iterationCount = 0;
   while (true) {
-    let tmp = iterationCount++
-    let name = startChars[tmp % startChars.length]
-    tmp = Math.floor(tmp / startChars.length)
+    let tmp = iterationCount++;
+    let name = startChars[tmp % startChars.length];
+    tmp = Math.floor(tmp / startChars.length);
     while (tmp > 0) {
-      name += chars[tmp % chars.length]
-      tmp = Math.floor(tmp / chars.length)
+      name += chars[tmp % chars.length];
+      tmp = Math.floor(tmp / chars.length);
     }
-    yield name
+    yield name;
   }
 }
 
-const shortNameGenerator = generateShortName()
+const shortNameGenerator = generateShortName();
 
-const shortNameMemo = new Map()
+const shortNameMemo = new Map();
 
 /** @type {Array<import('webpack').Configuration>} */
 module.exports = [
@@ -64,22 +63,23 @@ module.exports = [
             },
             // "style-loader",
             {
-              loader: "css-loader?modules", options: {
+              loader: "css-loader?modules",
+              options: {
                 modules: {
                   getLocalIdent: (ctx, localIdentName, localName) => {
-                    const hash = `${ctx.resourcePath}_____${localName}`
+                    const hash = `${ctx.resourcePath}_____${localName}`;
                     if (shortNameMemo.has(hash)) {
-                      return shortNameMemo.get(hash)
+                      return shortNameMemo.get(hash);
                     }
-                    const shortName = shortNameGenerator.next().value
-                    shortNameMemo.set(hash, shortName)
-                    return shortName
+                    const shortName = shortNameGenerator.next().value;
+                    shortNameMemo.set(hash, shortName);
+                    return shortName;
                   },
-                  mode: "local"
-                }
-              }
-            }
-          ]
+                  mode: "local",
+                },
+              },
+            },
+          ],
         },
         {
           exclude: /[\\/]esm[\\/]/,
@@ -96,9 +96,9 @@ module.exports = [
                       browsers: [
                         "last 1 Chrome version",
                         "last 1 Firefox version",
-                      ]
+                      ],
                     },
-                  }
+                  },
                 ],
                 "@babel/preset-react",
               ],
@@ -109,13 +109,10 @@ module.exports = [
     },
     name: "client",
     optimization: {
-      minimizer: [
-        `...`,
-        new CssMinimizerPlugin(),
-      ],
+      minimizer: [`...`, new CssMinimizerPlugin()],
     },
     output: {
-      filename: '[name].bundle.js',
+      filename: "[name].bundle.js",
       path: DIST_PUBLIC,
     },
     plugins: [
@@ -124,7 +121,7 @@ module.exports = [
       }),
       new BundleAnalyzerPlugin({
         analyzerMode: "static",
-        defaultSizes: "gzip"
+        defaultSizes: "gzip",
       }),
       new MiniCssExtractPlugin({
         filename: "[name].css",

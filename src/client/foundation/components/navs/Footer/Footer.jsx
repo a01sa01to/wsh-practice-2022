@@ -18,7 +18,9 @@ export const Footer = () => {
       </ul>
 
       <h1 className={style.nametext}>
-        <Link className={style.nametextlink} to="/">CyberTicket</Link>
+        <Link className={style.nametextlink} to="/">
+          CyberTicket
+        </Link>
       </h1>
 
       <p className={style.warningtext}>

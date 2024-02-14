@@ -47,7 +47,7 @@ export const useRegister = () => {
   const { setUserId } = useContext(AuthContext);
 
   const register = useCallback(async () => {
-    const res = await fetch("/api/users/me").then(res => {
+    const res = await fetch("/api/users/me").then((res) => {
       if (!res.ok) {
         throw new Error("failed to fetch");
       }

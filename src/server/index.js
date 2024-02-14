@@ -17,11 +17,11 @@ const server = fastify({
   logger: IS_PRODUCTION
     ? false
     : {
-      prettyPrint: {
-        ignore: "pid,hostname",
-        translateTime: "SYS:HH:MM:ss",
+        prettyPrint: {
+          ignore: "pid,hostname",
+          translateTime: "SYS:HH:MM:ss",
+        },
       },
-    },
 });
 server.register(fastifySensible);
 server.register(fastifyCompress);
@@ -43,9 +43,8 @@ server.addHook("onRequest", async (req, res) => {
 server.addHook("onRequest", async (req, res) => {
   if (req.url.includes("api") && !req.url.includes("zengin")) {
     res.header("Cache-Control", "no-cache, no-store, no-transform");
-    res.header("Connection", "close")
-  }
-  else {
+    res.header("Connection", "close");
+  } else {
     res.header("Cache-Control", "public, max-age=31536000, immutable");
     res.header("Connection", "keep-alive");
   }

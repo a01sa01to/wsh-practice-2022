@@ -13,7 +13,7 @@ import { jsonFetcher } from "../../../utils/HttpUtils";
 
 import { EntryTable } from "./internal/EntryTable";
 import { PlayerPictureList } from "./internal/PlayerPictureList";
-import style from "./style.module.css"
+import style from "./style.module.css";
 
 /** @type {React.VFC} */
 export const RaceCard = () => {
@@ -37,7 +37,11 @@ export const RaceCard = () => {
       <Section dark shrink>
         <span className={style.livebadge}>Live</span>
         <Spacer mt2 />
-        <TrimmedImage height={225} src={data.image.replace(".jpg", ".webp")} width={400} />
+        <TrimmedImage
+          height={225}
+          src={data.image.replace(".jpg", ".webp")}
+          width={400}
+        />
       </Section>
 
       <Spacer mt2 />

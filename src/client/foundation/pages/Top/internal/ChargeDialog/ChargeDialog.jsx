@@ -65,7 +65,10 @@ export const ChargeDialog = forwardRef(({ onComplete, zenginCode }, ref) => {
     [charge, bankCode, branchCode, accountNo, amount, onComplete, clearForm],
   );
 
-  const bankList = zenginCode == null ? [] : Object.entries(zenginCode).map(([code, { name }]) => ({ code, name }));
+  const bankList =
+    zenginCode == null
+      ? []
+      : Object.entries(zenginCode).map(([code, { name }]) => ({ code, name }));
   const bank = zenginCode == null ? null : zenginCode[bankCode];
   const branch = bank?.branches[branchCode];
 

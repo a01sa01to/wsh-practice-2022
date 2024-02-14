@@ -9,5 +9,12 @@ import React from "react";
 
 /** @type {React.VFC<Props>} */
 export const TrimmedImage = ({ height, src, width }) => {
-  return <img loading="lazy" src={src} style={{ aspectRatio: `${width} / ${height}`, objectFit: "cover" }} width={width} />
+  return (
+    <img
+      loading="lazy"
+      src={src}
+      style={{ aspectRatio: `${width} / ${height}`, objectFit: "cover" }}
+      width={width}
+    />
+  );
 };

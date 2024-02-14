@@ -1,7 +1,7 @@
 import clsx from "clsx";
 import React from "react";
 
-import style from "./button.module.css"
+import style from "./button.module.css";
 
 /**
  * @typedef Props

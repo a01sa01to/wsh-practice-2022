@@ -165,6 +165,6 @@ export const apiRoute = async (fastify) => {
 
   fastify.get("/zengin", async (_req, res) => {
     // minify されないので text/plain にしておく
-    res.send(JSON.stringify(zenginCode), null, 0)
+    res.send(JSON.stringify(zenginCode), null, 0);
   });
 };
