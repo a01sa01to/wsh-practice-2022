@@ -14,10 +14,10 @@ export const apiRoute = async (fastify) => {
     const repo = (await createConnection()).getRepository(User);
 
     if (req.user != null) {
-      res.send(req.user);
+      return res.send(req.user);
     } else {
       const user = await repo.save(new User());
-      res.send(user);
+      return res.send(user);
     }
   });
 
@@ -36,7 +36,7 @@ export const apiRoute = async (fastify) => {
     req.user.balance += amount;
     await repo.save(req.user);
 
-    res.status(204).send();
+    return res.status(204).send();
   });
 
   fastify.get("/races", async (req, res) => {
@@ -76,7 +76,7 @@ export const apiRoute = async (fastify) => {
       where,
     });
 
-    res.send({ races });
+    return res.send({ races });
   });
 
   fastify.get("/races/:raceId", async (req, res) => {
@@ -90,7 +90,7 @@ export const apiRoute = async (fastify) => {
       throw fastify.httpErrors.notFound();
     }
 
-    res.send(race);
+    return res.send(race);
   });
 
   fastify.get("/races/:raceId/betting-tickets", async (req, res) => {
@@ -110,9 +110,7 @@ export const apiRoute = async (fastify) => {
       },
     });
 
-    res.send({
-      bettingTickets,
-    });
+    return res.send({ bettingTickets });
   });
 
   fastify.post("/races/:raceId/betting-tickets", async (req, res) => {
@@ -155,16 +153,16 @@ export const apiRoute = async (fastify) => {
     req.user.balance -= 100;
     await userRepo.save(req.user);
 
-    res.send(bettingTicket);
+    return res.send(bettingTicket);
   });
 
   fastify.post("/initialize", async (_req, res) => {
     await initialize();
-    res.status(204).send();
+    return res.status(204).send();
   });
 
   fastify.get("/zengin", async (_req, res) => {
     // minify されないので text/plain にしておく
-    res.send(JSON.stringify(zenginCode), null, 0);
+    return res.send(JSON.stringify(zenginCode), null, 0);
   });
 };
