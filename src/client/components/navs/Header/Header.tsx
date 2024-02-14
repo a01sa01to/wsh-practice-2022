@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useCallback } from "react";
+
 import Link from "next/link";
 
 import { useAuth, useRegister } from "../../../context/AuthContext";

@@ -1,11 +1,11 @@
 import React from "react";
-import { Link } from "react-router-dom";
 
-import { Stack } from "../../layouts/Stack";
+import Link from "next/link";
+
+import { Stack } from "../../layouts/Stack/Stack";
 
 import style from "./style.module.css";
 
-/** @type {React.FC<ItemProps & React.AnchorHTMLAttributes>} */
 const Item = ({ "aria-current": ariaCurrent, children, to, ...rest }) => {
   return (
     <li>
@@ -17,7 +17,7 @@ const Item = ({ "aria-current": ariaCurrent, children, to, ...rest }) => {
         <Link
           aria-current={ariaCurrent}
           className={style.link}
-          to={to}
+          href={to}
           {...rest}
         >
           {children}
