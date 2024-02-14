@@ -1,4 +1,5 @@
 .hero {
+  aspect-ratio: 2000 / 1435;
   display: block;
   margin: 0 auto;
 }

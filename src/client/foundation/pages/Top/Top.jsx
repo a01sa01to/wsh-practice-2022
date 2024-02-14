@@ -114,7 +114,7 @@ export const Top = () => {
 
   return (
     <Container>
-      <img alt="" className={style.hero} src={heroImageUrl} />
+      <img alt="" className={style.hero} src={heroImageUrl} width={2000} />
 
       <Spacer mt2 />
       {userData && (
@@ -133,12 +133,15 @@ export const Top = () => {
       <Spacer mt2 />
       <section>
         <Heading as="h1">本日のレース</Heading>
+        <span>{(148 + 16) * todayRaces.length - 16}</span>
         {todayRacesToShow.length > 0 && (
-          <RecentRaceList>
-            {todayRacesToShow.map((race) => (
-              <RecentRaceList.Item key={race.id} race={race} />
-            ))}
-          </RecentRaceList>
+          <div style={{ height: `${(148 + 16) * todayRaces.length - 16}px` }}>
+            <RecentRaceList>
+              {todayRacesToShow.map((race) => (
+                <RecentRaceList.Item key={race.id} race={race} />
+              ))}
+            </RecentRaceList>
+          </div>
         )}
       </section>
 
