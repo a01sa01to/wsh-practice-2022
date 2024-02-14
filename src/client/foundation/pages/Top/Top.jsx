@@ -12,9 +12,10 @@ import { isSameDay } from "../../utils/DateUtils";
 import { authorizedJsonFetcher, jsonFetcher } from "../../utils/HttpUtils";
 import { assets } from "../../utils/UrlUtils";
 
-import { ChargeDialog } from "./internal/ChargeDialog";
 import { RecentRaceList } from "./internal/RecentRaceList";
 import style from "./style.module.css";
+
+const ChargeDialog = React.lazy(() => import("./internal/ChargeDialog"));
 
 /** @type {React.VFC} */
 export const Top = () => {

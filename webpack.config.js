@@ -46,13 +46,6 @@ module.exports = [
     module: {
       rules: [
         {
-          resourceQuery: (value) => {
-            const query = new URLSearchParams(value);
-            return query.has("raw");
-          },
-          type: "asset/source",
-        },
-        {
           test: /\.css$/,
           use: [
             {
@@ -61,7 +54,6 @@ module.exports = [
                 esModule: false,
               },
             },
-            // "style-loader",
             {
               loader: "css-loader?modules",
               options: {
