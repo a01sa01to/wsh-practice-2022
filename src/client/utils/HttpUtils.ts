@@ -1,4 +1,4 @@
-export const jsonFetcher = async (/** @type {string} */ url) => {
+export const jsonFetcher = async (url: string) => {
   const res = await fetch(url, {
     headers: { "Content-Type": "application/json" },
   }).then((res) => {
@@ -11,11 +11,7 @@ export const jsonFetcher = async (/** @type {string} */ url) => {
   return res;
 };
 
-/**
- * @param {string} url
- * @param {string} userId
- */
-export const authorizedJsonFetcher = async (url, userId) => {
+export const authorizedJsonFetcher = async (url: string, userId: string) => {
   const res = await fetch(url, {
     headers: { "Content-Type": "application/json", "x-app-userid": userId },
   }).then((res) => {
