@@ -70,7 +70,7 @@ const Item = ({ race }) => {
 
         <Stack.Item>
           <Stack horizontal alignItems="center" gap={16}>
-            <TrimmedImage height={100} src={race.image} width={100} />
+            <TrimmedImage height={100} src={race.image.replace(".jpg", "_thumb.webp")} width={100} />
             <LinkButton className={style.racebtn} to={`/races/${race.id}/race-card`}>投票</LinkButton>
           </Stack>
         </Stack.Item>
