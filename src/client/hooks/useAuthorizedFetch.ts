@@ -1,23 +1,18 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 
-import { useAuth } from "../contexts/AuthContext";
+import { useAuth } from "../context/AuthContext";
 
-/**
- * @template T
- * @typedef {object} ReturnValues
- * @property {T | null} data
- * @property {Error | null} error
- * @property {boolean} loading
- * @property {() => void} revalidate
- */
+interface ReturnValues<T> {
+  data: T | null;
+  error: Error | null;
+  loading: boolean;
+  revalidate: () => void;
+}
 
-/**
- * @template T
- * @param {string} apiPath
- * @param {(apiPath: string, userId: string) => Promise<T>} fetcher
- * @returns {ReturnValues<T>}
- */
-export function useAuthorizedFetch(apiPath, fetcher) {
+export function useAuthorizedFetch<T>(
+  apiPath: string,
+  fetcher: (apiPath: string, userId: string) => Promise<T>,
+): ReturnValues<T> {
   const { loggedIn, userId } = useAuth();
 
   const [result, setResult] = useState({

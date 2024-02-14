@@ -1,20 +1,15 @@
 import { useEffect, useState } from "react";
 
-/**
- * @template T
- * @typedef {object} ReturnValues
- * @property {T | null} data
- * @property {Error | null} error
- * @property {boolean} loading
- */
+interface ReturnValues<T> {
+  data: T | null;
+  error: Error | null;
+  loading: boolean;
+}
 
-/**
- * @template T
- * @param {string} apiPath
- * @param {(apiPath: string) => Promise<T>} fetcher
- * @returns {ReturnValues<T>}
- */
-export function useFetch(apiPath, fetcher) {
+export function useFetch<T>(
+  apiPath: string,
+  fetcher: (apiPath: string) => Promise<T>,
+): ReturnValues<T> {
   const [result, setResult] = useState({
     data: null,
     error: null,

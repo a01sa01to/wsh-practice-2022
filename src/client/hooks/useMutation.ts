@@ -1,28 +1,22 @@
 import { useCallback, useState } from "react";
 
-import { useAuth } from "../contexts/AuthContext";
+import { useAuth } from "../context/AuthContext";
 
-/**
- * @typedef {UseMutationOptions}
- * @property {string} method
- * @property {boolean=} auth
- */
+interface UseMutationOptions {
+  method: string;
+  auth?: boolean;
+}
 
-/**
- * @template T
- * @typedef {object} ReturnValues
- * @property {T | null} data
- * @property {Error | null} error
- * @property {boolean} loading
- */
+interface ReturnValues<T> {
+  data: T | null;
+  error: Error | null;
+  loading: boolean;
+}
 
-/**
- * @template T
- * @param {string} apiPath
- * @param {UseMutationOptions} options
- * @returns {[(body: any) => Promise<void>, ReturnValues<T>]}
- */
-export function useMutation(apiPath, { auth, method }) {
+export function useMutation<T>(
+  apiPath: string,
+  { auth, method }: UseMutationOptions,
+): [body: (body: any) => Promise<void>, ReturnValues<T>] {
   const [result, setResult] = useState({
     data: null,
     error: null,
