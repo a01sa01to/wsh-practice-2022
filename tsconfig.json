@@ -1,10 +1,36 @@
 {
-  "include": ["src/**/*"],
+  "include": [
+    "src/**/*",
+    ".next/types/**/*.ts"
+  ],
   "compilerOptions": {
     "allowJs": true,
     "noEmit": true,
-    "typeRoots": ["src/types", "node_modules/@types"],
-    "jsx": "react",
-    "esModuleInterop": true
-  }
+    "typeRoots": [
+      "src/types",
+      "node_modules/@types"
+    ],
+    "jsx": "preserve",
+    "esModuleInterop": true,
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+    "skipLibCheck": true,
+    "strict": false,
+    "incremental": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ]
+  },
+  "exclude": [
+    "node_modules"
+  ]
 }
