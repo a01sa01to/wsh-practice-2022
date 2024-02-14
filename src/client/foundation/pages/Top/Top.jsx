@@ -12,10 +12,9 @@ import { isSameDay } from "../../utils/DateUtils";
 import { authorizedJsonFetcher, jsonFetcher } from "../../utils/HttpUtils";
 import { assets } from "../../utils/UrlUtils";
 
+import { ChargeDialog } from "./internal/ChargeDialog";
 import { RecentRaceList } from "./internal/RecentRaceList";
 import style from "./style.module.css";
-
-const ChargeDialog = React.lazy(() => import("./internal/ChargeDialog"));
 
 /**
  * @param {Model.Race[]} races
@@ -76,6 +75,7 @@ export const Top = () => {
   const { date = dayjs().format("YYYY-MM-DD") } = useParams();
 
   const chargeDialogRef = useRef(null);
+  const [zenginCode, setZenginCode] = useState(null);
 
   const { data: userData, revalidate } = useAuthorizedFetch(
     "/api/users/me",
@@ -84,7 +84,9 @@ export const Top = () => {
 
   const { data: raceData } = useFetch("/api/races", jsonFetcher);
 
-  const handleClickChargeButton = useCallback(() => {
+  const handleClickChargeButton = useCallback(async () => {
+    setZenginCode(await fetch("/api/zengin").then(res => res.json()))
+
     if (chargeDialogRef.current === null) {
       return;
     }
@@ -141,7 +143,7 @@ export const Top = () => {
       </section>
 
       <Suspense fallback={null}>
-        <ChargeDialog ref={chargeDialogRef} onComplete={handleCompleteCharge} />
+        <ChargeDialog ref={chargeDialogRef} onComplete={handleCompleteCharge} zenginCode={zenginCode} />
       </Suspense>
     </Container>
   );
