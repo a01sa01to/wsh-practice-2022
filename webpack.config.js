@@ -17,6 +17,28 @@ const PUBLIC_ROOT = abs("./public");
 const DIST_ROOT = abs("./dist");
 const DIST_PUBLIC = abs("./dist/public");
 
+
+// a, b, c, ..., z, A, B, ..., Z, _, aa, ab, ... みたいな className を生成するやつ
+function* generateShortName() {
+  const startChars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_'
+  const chars = startChars + '0123456789'
+  let iterationCount = 0
+  while (true) {
+    let tmp = iterationCount++
+    let name = startChars[tmp % startChars.length]
+    tmp = Math.floor(tmp / startChars.length)
+    while (tmp > 0) {
+      name += chars[tmp % chars.length]
+      tmp = Math.floor(tmp / chars.length)
+    }
+    yield name
+  }
+}
+
+const shortNameGenerator = generateShortName()
+
+const shortNameMemo = new Map()
+
 /** @type {Array<import('webpack').Configuration>} */
 module.exports = [
   {
@@ -41,7 +63,22 @@ module.exports = [
               },
             },
             // "style-loader",
-            { loader: "css-loader?modules", options: { modules: "local" } }
+            {
+              loader: "css-loader?modules", options: {
+                modules: {
+                  getLocalIdent: (ctx, localIdentName, localName) => {
+                    const hash = `${ctx.resourcePath}_____${localName}`
+                    if (shortNameMemo.has(hash)) {
+                      return shortNameMemo.get(hash)
+                    }
+                    const shortName = shortNameGenerator.next().value
+                    shortNameMemo.set(hash, shortName)
+                    return shortName
+                  },
+                  mode: "local"
+                }
+              }
+            }
           ]
         },
         {
