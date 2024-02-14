@@ -133,7 +133,6 @@ export const Top = () => {
       <Spacer mt2 />
       <section>
         <Heading as="h1">本日のレース</Heading>
-        <span>{(148 + 16) * todayRaces.length - 16}</span>
         {todayRacesToShow.length > 0 && (
           <div style={{ height: `${(148 + 16) * todayRaces.length - 16}px` }}>
             <RecentRaceList>
