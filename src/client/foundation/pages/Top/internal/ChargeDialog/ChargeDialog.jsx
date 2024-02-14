@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import React, { forwardRef, useCallback, useState } from "react";
 
 import { Dialog } from "../../../../components/layouts/Dialog";
@@ -92,9 +93,9 @@ export const ChargeDialog = forwardRef(({ onComplete, zenginCode }, ref) => {
             </datalist>
 
             {bank != null && (
-              <div>
+              <motion.div animate={{ opacity: 1 }} initial={{ opacity: 0 }}>
                 銀行名: {bank.name}銀行
-              </div>
+              </motion.div>
             )}
 
             <label>
@@ -116,9 +117,9 @@ export const ChargeDialog = forwardRef(({ onComplete, zenginCode }, ref) => {
             </datalist>
 
             {branch && (
-              <div>
+              <motion.div animate={{ opacity: 1 }} initial={{ opacity: 0 }}>
                 支店名: {branch.name}
-              </div>
+              </motion.div>
             )}
 
             <label>
