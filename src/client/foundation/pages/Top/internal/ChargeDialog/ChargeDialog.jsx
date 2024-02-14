@@ -1,4 +1,3 @@
-import { motion } from "framer-motion";
 import React, { forwardRef, useCallback, useState } from "react";
 
 import { Dialog } from "../../../../components/layouts/Dialog";
@@ -6,6 +5,8 @@ import { Spacer } from "../../../../components/layouts/Spacer";
 import { Stack } from "../../../../components/layouts/Stack";
 import { Heading } from "../../../../components/typographies/Heading";
 import { useMutation } from "../../../../hooks/useMutation";
+
+import style from "./style.module.css";
 
 const CANCEL = "cancel";
 const CHARGE = "charge";
@@ -96,9 +97,7 @@ export const ChargeDialog = forwardRef(({ onComplete, zenginCode }, ref) => {
             </datalist>
 
             {bank != null && (
-              <motion.div animate={{ opacity: 1 }} initial={{ opacity: 0 }}>
-                銀行名: {bank.name}銀行
-              </motion.div>
+              <div className={style.fadein}>銀行名: {bank.name}銀行</div>
             )}
 
             <label>
@@ -120,9 +119,7 @@ export const ChargeDialog = forwardRef(({ onComplete, zenginCode }, ref) => {
             </datalist>
 
             {branch && (
-              <motion.div animate={{ opacity: 1 }} initial={{ opacity: 0 }}>
-                支店名: {branch.name}
-              </motion.div>
+              <div className={style.fadein}>支店名: {branch.name}</div>
             )}
 
             <label>

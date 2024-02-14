@@ -1,5 +1,5 @@
 import dayjs from "dayjs";
-import React, { Suspense, useCallback, useRef, useState } from "react";
+import React, { useCallback, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
 
 import { Container } from "../../components/layouts/Container";
@@ -12,10 +12,9 @@ import { isSameDay } from "../../utils/DateUtils";
 import { authorizedJsonFetcher, jsonFetcher } from "../../utils/HttpUtils";
 import { assets } from "../../utils/UrlUtils";
 
+import { ChargeDialog } from "./internal/ChargeDialog";
 import { RecentRaceList } from "./internal/RecentRaceList";
 import style from "./style.module.css";
-
-const ChargeDialog = React.lazy(() => import("./internal/ChargeDialog"));
 
 /** @type {React.VFC} */
 export const Top = () => {
@@ -94,13 +93,11 @@ export const Top = () => {
         )}
       </section>
 
-      <Suspense fallback={null}>
-        <ChargeDialog
-          ref={chargeDialogRef}
-          onComplete={handleCompleteCharge}
-          zenginCode={zenginCode}
-        />
-      </Suspense>
+      <ChargeDialog
+        ref={chargeDialogRef}
+        onComplete={handleCompleteCharge}
+        zenginCode={zenginCode}
+      />
     </Container>
   );
 };
