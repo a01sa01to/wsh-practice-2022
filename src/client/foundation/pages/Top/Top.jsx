@@ -1,5 +1,5 @@
 import dayjs from "dayjs";
-import React, { Suspense, useCallback, useEffect, useRef, useState } from "react";
+import React, { Suspense, useCallback, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
 
 import { Container } from "../../components/layouts/Container";
@@ -15,60 +15,6 @@ import { assets } from "../../utils/UrlUtils";
 import { ChargeDialog } from "./internal/ChargeDialog";
 import { RecentRaceList } from "./internal/RecentRaceList";
 import style from "./style.module.css";
-
-/**
- * @param {Model.Race[]} races
- * @returns {Model.Race[]}
- */
-function useTodayRacesWithAnimation(races) {
-  const [isRacesUpdate, setIsRacesUpdate] = useState(false);
-  const [racesToShow, setRacesToShow] = useState([]);
-  const numberOfRacesToShow = useRef(0);
-  const prevRaces = useRef(races);
-  const timer = useRef(null);
-
-  useEffect(() => {
-    const isRacesUpdate = !races.map((e) => e.id).every(val => prevRaces.current.map((e) => e.id).includes(val))
-    prevRaces.current = races;
-    setIsRacesUpdate(isRacesUpdate);
-  }, [races]);
-
-  useEffect(() => {
-    if (!isRacesUpdate) {
-      return;
-    }
-    // 視覚効果 off のときはアニメーションしない
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      setRacesToShow(races);
-      return;
-    }
-
-    numberOfRacesToShow.current = 0;
-    if (timer.current !== null) {
-      clearInterval(timer.current);
-    }
-
-    timer.current = setInterval(() => {
-      if (numberOfRacesToShow.current >= races.length) {
-        clearInterval(timer.current);
-        return;
-      }
-
-      numberOfRacesToShow.current++;
-      setRacesToShow(races.slice(0, numberOfRacesToShow.current));
-    }, 100);
-  }, [isRacesUpdate, races]);
-
-  useEffect(() => {
-    return () => {
-      if (timer.current !== null) {
-        clearInterval(timer.current);
-      }
-    };
-  }, []);
-
-  return racesToShow;
-}
 
 /** @type {React.VFC} */
 export const Top = () => {
@@ -109,7 +55,6 @@ export const Top = () => {
           isSameDay(race.startAt, date),
         )
       : [];
-  const todayRacesToShow = useTodayRacesWithAnimation(todayRaces);
   const heroImageUrl = assets("/images/hero.webp")
 
   return (
@@ -133,11 +78,11 @@ export const Top = () => {
       <Spacer mt2 />
       <section>
         <Heading as="h1">本日のレース</Heading>
-        {todayRacesToShow.length > 0 && (
-          <div style={{ height: `${(148 + 16) * todayRaces.length - 16}px` }}>
+        {todayRaces.length > 0 && (
+          <div>
             <RecentRaceList>
-              {todayRacesToShow.map((race) => (
-                <RecentRaceList.Item key={race.id} race={race} />
+              {todayRaces.map((race, idx) => (
+                <RecentRaceList.Item key={race.id} race={race} style={{ animationDelay: `${idx * 100}ms` }} />
               ))}
             </RecentRaceList>
           </div>

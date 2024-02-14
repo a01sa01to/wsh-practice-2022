@@ -22,7 +22,7 @@ export const RecentRaceList = ({ children }) => {
  */
 
 /** @type {React.VFC<ItemProps>} */
-const Item = ({ race }) => {
+const Item = ({ race, style: propStyle }) => {
   const [closeAtText, setCloseAtText] = useState(formatCloseAt(race.closeAt));
 
   // 締切はリアルタイムで表示したい
@@ -37,7 +37,7 @@ const Item = ({ race }) => {
   }, [race.closeAt]);
 
   return (
-    <li className={style.itemwrapper} >
+    <li className={style.itemwrapper} style={propStyle} >
       <Stack horizontal alignItems="center" justifyContent="space-between">
         <Stack gap={8}>
           <h2 className={style.racetitle}>{race.name}</h2>

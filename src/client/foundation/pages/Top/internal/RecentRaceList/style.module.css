@@ -9,10 +9,12 @@
 
 .itemwrapper {
   animation-duration: 500ms;
+  animation-fill-mode: both;
   animation-name: fadein;
   animation-timing-function: cubic-bezier(0.2, 0.6, 0.35, 1);
   background: #fff;
   border-radius: 12px;
+  opacity: 0;
   padding: 24px;
 }
 
