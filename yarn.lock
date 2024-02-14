@@ -2833,13 +2833,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"bezier-easing@npm:^2.1.0":
-  version: 2.1.0
-  resolution: "bezier-easing@npm:2.1.0"
-  checksum: 10/086dfd042ccf91c3a9de811b635381aa6580e9f83d1951ed4ce4d4007645d8f3cebd491cb6259719ce9320df213316b99dd8e39e78997944b1c252a1d4b424b5
-  languageName: node
-  linkType: hard
-
 "big.js@npm:^5.2.2":
   version: 5.2.2
   resolution: "big.js@npm:5.2.2"
@@ -10467,7 +10460,6 @@ __metadata:
     "@typescript-eslint/eslint-plugin": "npm:^5.40.1"
     "@typescript-eslint/parser": "npm:^5.40.1"
     babel-loader: "npm:^8.2.3"
-    bezier-easing: "npm:^2.1.0"
     clsx: "npm:^2.1.0"
     copy-webpack-plugin: "npm:^10.2.0"
     css-loader: "npm:^6.10.0"

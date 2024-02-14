@@ -4,7 +4,6 @@ import { LinkButton } from "../../../../components/buttons/LinkButton";
 import { Spacer } from "../../../../components/layouts/Spacer";
 import { Stack } from "../../../../components/layouts/Stack";
 import { TrimmedImage } from "../../../../components/media/TrimmedImage";
-import { easeOutCubic, useAnimation } from "../../../../hooks/useAnimation";
 import { formatCloseAt } from "../../../../utils/DateUtils";
 
 import style from "./style.module.css";
@@ -30,36 +29,15 @@ const Item = ({ race }) => {
   useEffect(() => {
     const timer = setInterval(() => {
       setCloseAtText(formatCloseAt(race.closeAt));
-    }, 0);
+    }, 1000);
 
     return () => {
       clearInterval(timer);
     };
   }, [race.closeAt]);
 
-  const {
-    abortAnimation,
-    resetAnimation,
-    startAnimation,
-    value: opacity,
-  } = useAnimation({
-    duration: 500,
-    end: 1,
-    start: 0,
-    timingFunction: easeOutCubic,
-  });
-
-  useEffect(() => {
-    resetAnimation();
-    startAnimation();
-
-    return () => {
-      abortAnimation();
-    };
-  }, [race.id, startAnimation, abortAnimation, resetAnimation]);
-
   return (
-    <li className={style.itemwrapper} style={{ opacity }} >
+    <li className={style.itemwrapper} >
       <Stack horizontal alignItems="center" justifyContent="space-between">
         <Stack gap={8}>
           <h2 className={style.racetitle}>{race.name}</h2>
