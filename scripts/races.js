@@ -64,7 +64,7 @@ export async function insertRaces(startDate, endDate) {
           image: `/assets/images/races/${`${((i * 24 + j) % 20) + 1}`.padStart(
             3,
             "0",
-          )}.jpg`,
+          )}.webp`,
           name: NAMES[Math.min(Math.floor(Math.random() * NAMES.length), NAMES.length - 1)],
           startAt: startAt.toDate(),
         }),
