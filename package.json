@@ -52,7 +52,6 @@
     "@babel/runtime": "^7.23.9",
     "@fastify/compress": "^7.0.0",
     "@fastify/sensible": "^5.5.0",
-    "@fastify/static": "^7.0.1",
     "dayjs": "^1.11.10",
     "fastify": "^4.26.1",
     "next": "^14.1.0",
