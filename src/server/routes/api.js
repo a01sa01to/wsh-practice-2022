@@ -1,6 +1,5 @@
 import dayjs from "dayjs";
 import { Between, LessThanOrEqual, MoreThanOrEqual } from "typeorm";
-import zenginCode from "zengin-code";
 
 import { BettingTicket, Race, User } from "../../model/index.js";
 import { createConnection } from "../typeorm/connection.js";
@@ -159,10 +158,5 @@ export const apiRoute = async (fastify) => {
   fastify.post("/initialize", async (_req, res) => {
     await initialize();
     return res.status(204).send();
-  });
-
-  fastify.get("/zengin", async (_req, res) => {
-    // minify されないので text/plain にしておく
-    return res.send(JSON.stringify(zenginCode), null, 0);
   });
 };

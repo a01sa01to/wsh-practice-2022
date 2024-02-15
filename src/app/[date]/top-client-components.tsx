@@ -21,9 +21,9 @@ export const Charger = () => {
 
   const handleClickChargeButton = useCallback(async () => {
     if (zenginData == null) {
-      const res = (await fetch("/api/zengin").then((res) =>
-        res.json(),
-      )) as ZenginCode;
+      const res = (await fetch(
+        "https://zengin-code.github.io/api/banks.json",
+      ).then((res) => res.json())) as ZenginCode;
       setZenginData(res);
     }
 

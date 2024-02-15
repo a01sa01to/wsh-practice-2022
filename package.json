@@ -62,8 +62,7 @@
     "regenerator-runtime": "^0.14.1",
     "sqlite3": "^5.1.7",
     "typeorm": "^0.2.45",
-    "uuid": "^9.0.1",
-    "zengin-code": "^1.0.0-p20220130"
+    "uuid": "^9.0.1"
   },
   "engines": {
     "node": "20.x.x"
