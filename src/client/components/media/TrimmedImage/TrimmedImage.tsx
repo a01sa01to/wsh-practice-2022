@@ -8,12 +8,23 @@ interface Props {
   width: number;
   height: number;
   alt?: string;
+  loading?: "eager" | "lazy";
+  loadWidth?: number;
+  priority?: boolean;
 }
 
-export const TrimmedImage = ({ height, src, width, alt }: Props) => {
+export const TrimmedImage = ({
+  height,
+  src,
+  width,
+  alt,
+  loading,
+  loadWidth,
+  priority,
+}: Props) => {
   return (
     <Image
-      loading="lazy"
+      loading={loading ?? "lazy"}
       src={src}
       alt={alt ?? ""}
       style={{
@@ -23,7 +34,8 @@ export const TrimmedImage = ({ height, src, width, alt }: Props) => {
         maxWidth: width,
         height: "auto",
       }}
-      width={width * 2}
+      width={loadWidth ?? width}
+      priority={priority}
     />
   );
 };
