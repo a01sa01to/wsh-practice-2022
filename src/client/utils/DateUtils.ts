@@ -1,7 +1,13 @@
 import dayjs from "dayjs";
+import timezone from "dayjs/plugin/timezone";
+import utc from "dayjs/plugin/utc";
+
+dayjs.extend(utc);
+dayjs.extend(timezone);
+dayjs.tz.setDefault("Asia/Tokyo");
 
 export const isSameDay = (dateLeft: string, dateRight: string) => {
-  return dayjs(dateLeft).isSame(dayjs(dateRight), "day");
+  return dayjs(dateLeft).tz().isSame(dayjs(dateRight).tz(), "day");
 };
 
 export const formatTime = (ts: string) => {

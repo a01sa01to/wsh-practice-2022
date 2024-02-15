@@ -1,5 +1,11 @@
 import clsx from "clsx";
 import dayjs from "dayjs";
+import timezone from "dayjs/plugin/timezone";
+import utc from "dayjs/plugin/utc";
+
+dayjs.extend(utc);
+dayjs.extend(timezone);
+dayjs.tz.setDefault("Asia/Tokyo");
 
 import { Section } from "../../../../client/components/layouts/Section/Section";
 import { Spacer } from "../../../../client/components/layouts/Spacer/Spacer";
@@ -16,7 +22,7 @@ export default async function Odds({ params }: { params: { raceId: string } }) {
     { next: { revalidate: 30 } },
   ).then((res) => res.json())) as Model.Race;
 
-  const isRaceClosed = dayjs(data.closeAt).isBefore(new Date());
+  const isRaceClosed = dayjs(data.closeAt).tz().isBefore(dayjs().tz());
 
   return (
     <Section>
