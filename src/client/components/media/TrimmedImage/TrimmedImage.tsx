@@ -7,14 +7,15 @@ interface Props {
   src: StaticImport;
   width: number;
   height: number;
+  alt?: string;
 }
 
-export const TrimmedImage = ({ height, src, width }: Props) => {
+export const TrimmedImage = ({ height, src, width, alt }: Props) => {
   return (
     <Image
       loading="lazy"
       src={src}
-      alt=""
+      alt={alt ?? ""}
       style={{ objectFit: "cover" }}
       width={width}
       height={height}

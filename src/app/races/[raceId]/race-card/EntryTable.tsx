@@ -1,7 +1,8 @@
-import clsx from "clsx";
 import React from "react";
 
-import style from "./style.module.css";
+import clsx from "clsx";
+
+import style from "./entrytable.module.css";
 /**
  * @typedef Props
  * @property {Model.RaceEntry[]} entries

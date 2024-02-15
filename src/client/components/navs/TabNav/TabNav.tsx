@@ -1,3 +1,4 @@
+import type { ComponentPropsWithRef } from "react";
 import React from "react";
 
 import Link from "next/link";
@@ -6,7 +7,17 @@ import { Stack } from "../../layouts/Stack/Stack";
 
 import style from "./style.module.css";
 
-const Item = ({ "aria-current": ariaCurrent, children, to, ...rest }) => {
+interface Props extends ComponentPropsWithRef<"a"> {
+  "aria-current"?: boolean;
+  to: string;
+}
+
+const Item = ({
+  "aria-current": ariaCurrent,
+  children,
+  to,
+  ...rest
+}: Props) => {
   return (
     <li>
       {ariaCurrent ? (
