@@ -22,9 +22,10 @@ export async function generateStaticParams() {
 
 export default async function Odds({ params }: { params: { raceId: string } }) {
   const { raceId } = params;
-  const data = (await import(
-    `../../../../client/data/races/${raceId}.json`
-  )) as Model.Race;
+  const { default: data } = (await import(
+    `../../../../client/data/races/${raceId}.json`,
+    { assert: { type: "json" } }
+  )) as { default: Model.Race };
 
   const isRaceClosed = dayjs(data.closeAt).tz().isBefore(dayjs().tz());
 

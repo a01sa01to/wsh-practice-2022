@@ -16,9 +16,10 @@ export default async function RaceCard({
   params: { raceId: string };
 }) {
   const { raceId } = params;
-  const data = (await import(
-    `../../../../client/data/races/${raceId}.json`
-  )) as Model.Race;
+  const { default: data } = (await import(
+    `../../../../client/data/races/${raceId}.json`,
+    { assert: { type: "json" } }
+  )) as { default: Model.Race };
 
   return (
     <Section>
