@@ -16,9 +16,14 @@ export const TrimmedImage = ({ height, src, width, alt }: Props) => {
       loading="lazy"
       src={src}
       alt={alt ?? ""}
-      style={{ objectFit: "cover" }}
-      width={width}
-      height={height}
+      style={{
+        objectFit: "cover",
+        aspectRatio: `${width}/${height}`,
+        width: "100%",
+        maxWidth: width,
+        height: "auto",
+      }}
+      width={width * 2}
     />
   );
 };
