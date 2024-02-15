@@ -9,9 +9,7 @@ interface Props {
   height: number;
   alt?: string;
   loading?: "eager" | "lazy";
-  loadWidth?: number;
   priority?: boolean;
-  quality?: number;
 }
 
 export const TrimmedImage = ({
@@ -20,9 +18,7 @@ export const TrimmedImage = ({
   width,
   alt,
   loading,
-  loadWidth,
   priority,
-  quality,
 }: Props) => {
   return (
     <Image
@@ -36,10 +32,9 @@ export const TrimmedImage = ({
         maxWidth: width,
         height: "auto",
       }}
-      width={loadWidth ?? width}
+      width={width}
       height={height}
       priority={priority}
-      quality={quality}
     />
   );
 };
