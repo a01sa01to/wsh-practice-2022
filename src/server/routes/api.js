@@ -1,7 +1,4 @@
-import dayjs from "dayjs";
-import { Between, LessThanOrEqual, MoreThanOrEqual } from "typeorm";
-
-import { BettingTicket, Race, User } from "../../model/index.js";
+import { BettingTicket, User } from "../../model/index.js";
 import { createConnection } from "../typeorm/connection.js";
 import { initialize } from "../typeorm/initialize.js";
 
@@ -36,60 +33,6 @@ export const apiRoute = async (fastify) => {
     await repo.save(req.user);
 
     return res.status(204).send();
-  });
-
-  fastify.get("/races", async (req, res) => {
-    const since =
-      req.query.since != null ? dayjs.unix(req.query.since) : undefined;
-    const until =
-      req.query.until != null ? dayjs.unix(req.query.until) : undefined;
-
-    if (since != null && !since.isValid()) {
-      throw fastify.httpErrors.badRequest();
-    }
-    if (until != null && !until.isValid()) {
-      throw fastify.httpErrors.badRequest();
-    }
-
-    const repo = (await createConnection()).getRepository(Race);
-
-    const where = {};
-    if (since != null && until != null) {
-      Object.assign(where, {
-        startAt: Between(
-          since.utc().format("YYYY-MM-DD HH:mm:ss"),
-          until.utc().format("YYYY-MM-DD HH:mm:ss"),
-        ),
-      });
-    } else if (since != null) {
-      Object.assign(where, {
-        startAt: MoreThanOrEqual(since.utc().format("YYYY-MM-DD HH:mm:ss")),
-      });
-    } else if (until != null) {
-      Object.assign(where, {
-        startAt: LessThanOrEqual(since.utc().format("YYYY-MM-DD HH:mm:ss")),
-      });
-    }
-
-    const races = await repo.find({
-      where,
-    });
-
-    return res.send({ races });
-  });
-
-  fastify.get("/races/:raceId", async (req, res) => {
-    const repo = (await createConnection()).getRepository(Race);
-
-    const race = await repo.findOne(req.params.raceId, {
-      relations: ["entries", "entries.player", "trifectaOdds"],
-    });
-
-    if (race === undefined) {
-      throw fastify.httpErrors.notFound();
-    }
-
-    return res.send(race);
   });
 
   fastify.get("/races/:raceId/betting-tickets", async (req, res) => {
