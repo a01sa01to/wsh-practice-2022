@@ -1,17 +1,16 @@
-import clsx from "clsx";
+"use client";
+
 import React from "react";
 
-import { EntryCombination } from "../../../../../components/displays/EntryCombination";
+import clsx from "clsx";
 
-import style from "./style.module.css";
+import { EntryCombination } from "../../../../client/components/displays/EntryCombination/EntryCombination";
+import { useAuthorizedFetch } from "../../../../client/hooks/useAuthorizedFetch";
+import { authorizedJsonFetcher } from "../../../../client/utils/HttpUtils";
 
-/**
- * @typedef ItemProps
- * @property {Model.BettingTicket} ticket
- */
+import style from "./ticket.module.css";
 
-/** @type {React.VFC<ItemProps>} */
-const Item = ({ ticket: { key } }) => {
+const Item = ({ ticket: { key } }: { ticket: Model.BettingTicket }) => {
   return (
     <tr className={style.itemwrapper}>
       <td className={style.cell}>-</td>
@@ -23,8 +22,12 @@ const Item = ({ ticket: { key } }) => {
   );
 };
 
-export const BettingTicketList = ({ children }) => {
-  if (React.Children.count(children) === 0) {
+export const BettingTicketList = ({ raceId }: { raceId: string }) => {
+  const { data: ticketData } = useAuthorizedFetch<{
+    bettingTickets: Model.BettingTicket[];
+  } | null>(`/api/races/${raceId}/betting-tickets`, authorizedJsonFetcher);
+
+  if (!ticketData || ticketData?.bettingTickets.length === 0) {
     return (
       <div className={style.placeholder}>
         <svg
@@ -56,8 +59,11 @@ export const BettingTicketList = ({ children }) => {
           </th>
         </tr>
       </thead>
-      <tbody>{children}</tbody>
+      <tbody>
+        {ticketData.bettingTickets.map((ticket) => (
+          <Item key={ticket.id} ticket={ticket} />
+        ))}
+      </tbody>
     </table>
   );
 };
-BettingTicketList.Item = Item;

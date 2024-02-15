@@ -1,12 +1,7 @@
 import React from "react";
 
-import style from "./style.module.css";
+import style from "./resultsec.module.css";
 
-/**
- * @typedef Props
- */
-
-/** @type {React.VFC<Props>} */
 export const RaceResultSection = () => {
   return (
     <div className={style.wrapper}>
