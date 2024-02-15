@@ -9,5 +9,5 @@ export default function HeaderChildren({ children }) {
       <Header />
       {children}
     </AuthContextProvider>
-  )
+  );
 }

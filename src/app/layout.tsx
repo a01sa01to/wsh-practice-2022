@@ -1,10 +1,10 @@
-import React from "react"
+import React from "react";
 
 import { Footer } from "../client/components/navs/Footer/Footer";
 
 import HeaderChildren from "./header-children";
 
-import "./global.css"
+import "./global.css";
 
 export default function RootLayout({ children }) {
   return (

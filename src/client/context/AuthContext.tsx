@@ -1,9 +1,18 @@
 "use client";
 
-import type { Dispatch, SetStateAction} from "react";
-import React, { createContext, useCallback, useContext, useMemo, useState } from "react";
+import type { Dispatch, SetStateAction } from "react";
+import React, {
+  createContext,
+  useCallback,
+  useContext,
+  useMemo,
+  useState,
+} from "react";
 
-const AuthContext = createContext<{ userId: string | null, setUserId: Dispatch<SetStateAction<string>> }>({
+const AuthContext = createContext<{
+  userId: string | null;
+  setUserId: Dispatch<SetStateAction<string>>;
+}>({
   setUserId: () => {
     throw new Error("AuthContext value is not set");
   },

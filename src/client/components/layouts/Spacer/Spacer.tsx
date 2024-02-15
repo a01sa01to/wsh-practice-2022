@@ -11,7 +11,13 @@ interface Props {
   mr2?: boolean;
 }
 
-export const Spacer = ({ children, mr2, mt2, mt4, ...rest }: PropsWithChildren<Props>) => {
+export const Spacer = ({
+  children,
+  mr2,
+  mt2,
+  mt4,
+  ...rest
+}: PropsWithChildren<Props>) => {
   if (!mt2 && !mt4 && !mr2) throw new Error("At least one prop must be true");
   return (
     <div
