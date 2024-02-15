@@ -11,6 +11,7 @@ interface Props {
   loading?: "eager" | "lazy";
   loadWidth?: number;
   priority?: boolean;
+  quality?: number;
 }
 
 export const TrimmedImage = ({
@@ -21,6 +22,7 @@ export const TrimmedImage = ({
   loading,
   loadWidth,
   priority,
+  quality,
 }: Props) => {
   return (
     <Image
@@ -37,6 +39,7 @@ export const TrimmedImage = ({
       width={loadWidth ?? width}
       height={height}
       priority={priority}
+      quality={quality}
     />
   );
 };

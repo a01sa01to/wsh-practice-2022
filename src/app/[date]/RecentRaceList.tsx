@@ -43,6 +43,7 @@ const Item = ({ race, style: propStyle }: ItemProps) => {
               src={img2staticImport(race.image)}
               width={100}
               loadWidth={200}
+              quality={85}
             />
             <LinkButton
               className={style.racebtn}
