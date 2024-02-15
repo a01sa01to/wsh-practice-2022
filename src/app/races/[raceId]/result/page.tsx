@@ -19,7 +19,7 @@ export default async function RaceCard({
   const { raceId } = params;
   const data = (await fetch(
     `https://wsh2022-practice-j5kcv767ma-an.a.run.app/api/races/${raceId}`,
-    { cache: "no-store" },
+    { next: { revalidate: 30 } },
   ).then((res) => res.json())) as Model.Race;
 
   return (
