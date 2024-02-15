@@ -41,6 +41,8 @@ export default async function DatePage({
         alt="Hero Image"
         sizes="100vw"
         className={style.hero}
+        priority
+        loading="eager"
       />
       <Spacer mt2 />
       <Charger />
