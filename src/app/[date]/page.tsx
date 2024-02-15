@@ -35,19 +35,10 @@ export default async function DatePage({
   params: { date: string };
 }) {
   const { date } = params;
-  const raceData = (await fetch(
-    "https://wsh2022-practice-j5kcv767ma-an.a.run.app/api/races",
-    { next: { revalidate: 30 } },
-  ).then((res) => res.json())) as {
-    races: Model.Race[];
-  };
 
-  const todayRaces =
-    raceData != null
-      ? [...raceData.races]
-          .sort((a, b) => dayjs(a.startAt).unix() - dayjs(b.startAt).unix())
-          .filter((race) => isSameDay(race.startAt, date))
-      : [];
+  const todayRaces = [...RaceData.races]
+    .sort((a, b) => dayjs(a.startAt).unix() - dayjs(b.startAt).unix())
+    .filter((race) => isSameDay(race.startAt, date));
 
   return (
     <Container>

@@ -7,6 +7,7 @@ import { LinkButton } from "../../client/components/buttons/LinkButton/LinkButto
 import { Spacer } from "../../client/components/layouts/Spacer/Spacer";
 import { Stack } from "../../client/components/layouts/Stack/Stack";
 import { TrimmedImage } from "../../client/components/media/TrimmedImage/TrimmedImage";
+import type RaceData from "../../client/data/races.json";
 import img2staticImport from "../../client/utils/img2staticImport";
 
 import CloseAtRealtime from "./closeAtRealtime";
@@ -21,7 +22,7 @@ export const RecentRaceList = ({ children }) => {
 };
 
 interface ItemProps {
-  race: Model.Race;
+  race: (typeof RaceData.races)[0];
   style: CSSProperties;
 }
 
