@@ -35,6 +35,7 @@ export const TrimmedImage = ({
         height: "auto",
       }}
       width={loadWidth ?? width}
+      height={height}
       priority={priority}
     />
   );
