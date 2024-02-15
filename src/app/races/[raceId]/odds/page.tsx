@@ -11,16 +11,20 @@ import { Section } from "../../../../client/components/layouts/Section/Section";
 import { Spacer } from "../../../../client/components/layouts/Spacer/Spacer";
 import { TabNav } from "../../../../client/components/navs/TabNav/TabNav";
 import { Heading } from "../../../../client/components/typographies/Heading/Heading";
+import RaceData from "../../../../client/data/races.json";
 
 import OddsClient from "./client";
 import style from "./style.module.css";
 
+export async function generateStaticParams() {
+  return RaceData.races.map((race) => race.id);
+}
+
 export default async function Odds({ params }: { params: { raceId: string } }) {
   const { raceId } = params;
-  const data = (await fetch(
-    `https://wsh2022-practice-j5kcv767ma-an.a.run.app/api/races/${raceId}`,
-    { next: { revalidate: 30 } },
-  ).then((res) => res.json())) as Model.Race;
+  const data = (await import(
+    `../../../../client/data/races/${raceId}.json`
+  )) as Model.Race;
 
   const isRaceClosed = dayjs(data.closeAt).tz().isBefore(dayjs().tz());
 

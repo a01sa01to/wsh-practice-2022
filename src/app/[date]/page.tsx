@@ -3,16 +3,31 @@
 import Image from "next/image";
 
 import dayjs from "dayjs";
+import timezone from "dayjs/plugin/timezone";
+import utc from "dayjs/plugin/utc";
+
+dayjs.extend(utc);
+dayjs.extend(timezone);
+dayjs.tz.setDefault("Asia/Tokyo");
 
 import HeroImg from "../../client/assets/hero.jpg";
 import { Container } from "../../client/components/layouts/Container/Container";
 import { Spacer } from "../../client/components/layouts/Spacer/Spacer";
 import { Heading } from "../../client/components/typographies/Heading/Heading";
+import RaceData from "../../client/data/races.json";
 import { isSameDay } from "../../client/utils/DateUtils";
 
 import { RecentRaceList } from "./RecentRaceList";
 import style from "./style.module.css";
 import { Charger } from "./top-client-components";
+
+export async function generateStaticParams() {
+  const days = new Set<string>();
+  for (const race of RaceData.races) {
+    days.add(dayjs(race.startAt).tz().format("YYYY-MM-DD"));
+  }
+  return Array.from(days).map((date) => ({ params: { date } }));
+}
 
 export default async function DatePage({
   params,

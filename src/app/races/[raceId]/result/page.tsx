@@ -2,9 +2,14 @@ import { Section } from "../../../../client/components/layouts/Section/Section";
 import { Spacer } from "../../../../client/components/layouts/Spacer/Spacer";
 import { TabNav } from "../../../../client/components/navs/TabNav/TabNav";
 import { Heading } from "../../../../client/components/typographies/Heading/Heading";
+import RaceData from "../../../../client/data/races.json";
 
 import { BettingTicketList } from "./BettingTicket";
 import { RaceResultSection } from "./ResultSection";
+
+export async function generateStaticParams() {
+  return RaceData.races.map((race) => race.id);
+}
 
 export default async function RaceCard({
   params,
