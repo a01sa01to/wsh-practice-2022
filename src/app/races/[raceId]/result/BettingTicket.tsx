@@ -54,7 +54,7 @@ export const BettingTicketList = ({ raceId }: { raceId: string }) => {
         <tr>
           <th className={clsx(style.cell, style.th)}>的中</th>
           <th className={clsx(style.cell, style.th)}>買い目</th>
-          <th className={clsx(style.cell, style.th, style.right)} width="96px">
+          <th className={clsx(style.cell, style.th, style.right, style.w96)}>
             数量
           </th>
         </tr>

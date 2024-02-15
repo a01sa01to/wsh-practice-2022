@@ -16,6 +16,7 @@ interface ReturnValues<T> {
 export function useMutation<T>(
   apiPath: string,
   { auth, method }: UseMutationOptions,
+  // eslint-disable-next-line no-unused-vars, @typescript-eslint/no-explicit-any
 ): [body: (body: any) => Promise<void>, ReturnValues<T>] {
   const [result, setResult] = useState({
     data: null,

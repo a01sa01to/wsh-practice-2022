@@ -11,6 +11,7 @@ interface ReturnValues<T> {
 
 export function useAuthorizedFetch<T>(
   apiPath: string,
+  // eslint-disable-next-line no-unused-vars
   fetcher: (apiPath: string, userId: string) => Promise<T>,
 ): ReturnValues<T> {
   const { loggedIn, userId } = useAuth();

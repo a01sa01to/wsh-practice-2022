@@ -1,5 +1,7 @@
 import React, { useCallback, useState } from "react";
 
+import clsx from "clsx";
+
 import { BaseButton } from "../../../../client/components/buttons/BaseButton/BaseButton";
 import { Spacer } from "../../../../client/components/layouts/Spacer/Spacer";
 import { Stack } from "../../../../client/components/layouts/Stack/Stack";
@@ -13,6 +15,7 @@ interface Props {
   odds: Model.OddsItem[];
   entries: Model.RaceEntry[];
   isRaceClosed: boolean;
+  // eslint-disable-next-line no-unused-vars
   onClickOdds: (odds: Model.OddsItem) => void;
 }
 
@@ -58,13 +61,11 @@ export const OddsTable = ({
           <table className={style.table}>
             <thead>
               <tr>
-                <th className={style.th} width="64px">
-                  2位
-                </th>
-                <th className={style.th} width="32px"></th>
+                <th className={clsx(style.th, style.w64)}>2位</th>
+                <th className={clsx(style.th, style.w32)} />
 
                 {headNumbers.map((second) => (
-                  <th key={second} className={style.th} width="auto">
+                  <th key={second} className={style.th}>
                     {second}
                   </th>
                 ))}
@@ -86,7 +87,7 @@ export const OddsTable = ({
                     const item = oddsMap[mapKey(second, third)];
 
                     return (
-                      <td key={second} className={style.td} width="auto">
+                      <td key={second} className={style.td}>
                         {second !== third ? (
                           isRaceClosed ? (
                             <div className={style.inactivebuybutton}>

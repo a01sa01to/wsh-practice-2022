@@ -15,57 +15,47 @@ export const EntryTable = ({ entries }) => {
       <table className={style.table}>
         <thead>
           <tr>
-            <th className={style.th} rowSpan={2} width="48px">
+            <th className={clsx(style.th, style.w48)} rowSpan={2}>
               番号
             </th>
             <th className={clsx(style.th, style.left)} rowSpan={2}>
               選手名
             </th>
-            <th className={style.th} rowSpan={2} width="48px">
+            <th className={clsx(style.th, style.w48)} rowSpan={2}>
               予想
             </th>
             <th className={style.th} colSpan={3}>
               決まり手
             </th>
 
-            <th className={style.th} rowSpan={2} width="24px">
+            <th className={clsx(style.th, style.w24)} rowSpan={2}>
               1位
             </th>
-            <th className={style.th} rowSpan={2} width="24px">
+            <th className={clsx(style.th, style.w24)} rowSpan={2}>
               2位
             </th>
-            <th className={style.th} rowSpan={2} width="24px">
+            <th className={clsx(style.th, style.w24)} rowSpan={2}>
               3位
             </th>
-            <th className={style.th} rowSpan={2} width="24px">
+            <th className={clsx(style.th, style.w24)} rowSpan={2}>
               着外
             </th>
 
-            <th className={style.th} rowSpan={2} width="80px">
+            <th className={clsx(style.th, style.w80)} rowSpan={2}>
               勝率
             </th>
-            <th className={style.th} rowSpan={2} width="80px">
+            <th className={clsx(style.th, style.w80)} rowSpan={2}>
               3位内率
             </th>
 
-            <th
-              className={clsx(style.th, style.left)}
-              rowSpan={2}
-              width="250px"
-            >
+            <th className={clsx(style.th, style.left, style.w250)} rowSpan={2}>
               コメント
             </th>
           </tr>
           <tr>
-            <th className={style.th} width="64px">
-              グー
-            </th>
-            <th className={style.th} width="64px">
-              チョキ
-            </th>
-            <th className={style.th} width="64px">
-              パー
-            </th>
+            <th className={clsx(style.th, style.w64)}>グー</th>
+            <th className={clsx(style.th, style.w64)}>チョキ</th>
+            <th className={clsx(style.th, style.w64)}>パー</th>
           </tr>
         </thead>
         <tbody>

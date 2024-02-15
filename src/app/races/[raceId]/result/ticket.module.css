@@ -20,6 +20,9 @@
 .th {
   border-bottom: 2px solid #1c1917;
 }
+.th.w96 {
+  width: 96px;
+}
 
 .placeholder {
   align-items: center;

@@ -27,6 +27,15 @@
   height: 100%;
   padding: 0 8px;
   padding: 0;
+  width: auto;
+}
+
+.th.w64 {
+  width: 64px;
+}
+
+.th.w32 {
+  width: 32px;
 }
 
 .td {

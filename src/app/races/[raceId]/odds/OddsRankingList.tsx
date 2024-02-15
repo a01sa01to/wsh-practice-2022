@@ -10,6 +10,7 @@ import style from "./rankList.module.css";
 interface Props {
   odds: Model.OddsItem[];
   isRaceClosed: boolean;
+  // eslint-disable-next-line no-unused-vars
   onClickOdds: (odds: Model.OddsItem) => void;
 }
 

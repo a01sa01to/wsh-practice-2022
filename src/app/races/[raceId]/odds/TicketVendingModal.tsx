@@ -64,7 +64,8 @@ export const TicketVendingModal = forwardRef<HTMLDialogElement, Props>(
         return;
       }
 
-      ref.current?.showModal();
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      (ref as any).current?.showModal();
 
       if (err.status === 412) {
         setError("残高が不足しています");

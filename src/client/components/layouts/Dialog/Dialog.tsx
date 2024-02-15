@@ -4,6 +4,7 @@ import React, { forwardRef } from "react";
 import style from "./style.module.css";
 
 interface Props {
+  // eslint-disable-next-line no-unused-vars
   onClose: (event: SyntheticEvent<HTMLDialogElement, Event>) => void;
 }
 

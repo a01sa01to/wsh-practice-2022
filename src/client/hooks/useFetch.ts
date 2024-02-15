@@ -8,6 +8,7 @@ interface ReturnValues<T> {
 
 export function useFetch<T>(
   apiPath: string,
+  // eslint-disable-next-line no-unused-vars
   fetcher: (apiPath: string) => Promise<T>,
 ): ReturnValues<T> {
   const [result, setResult] = useState({
