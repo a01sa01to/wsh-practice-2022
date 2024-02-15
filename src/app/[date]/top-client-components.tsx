@@ -20,16 +20,18 @@ export const Charger = () => {
   const chargeDialogRef = useRef(null);
 
   const handleClickChargeButton = useCallback(async () => {
-    await fetch("/api/zengin").then(async (res) => {
-      const data = (await res.json()) as ZenginCode;
-      setZenginData(data);
-    });
+    if (zenginData == null) {
+      const res = (await fetch("/api/zengin").then((res) =>
+        res.json(),
+      )) as ZenginCode;
+      setZenginData(res);
+    }
 
     if (chargeDialogRef.current === null) {
       return;
     }
     chargeDialogRef.current.showModal();
-  }, []);
+  }, [zenginData]);
 
   const handleCompleteCharge = useCallback(() => {
     revalidate();
