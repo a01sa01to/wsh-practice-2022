@@ -2,13 +2,11 @@ import React from "react";
 
 import style from "./style.module.css";
 
-/**
- * @typedef Props
- * @property {number[]} numbers
- */
+interface Props {
+  numbers: number[];
+}
 
-/** @type {React.VFC<Props>} */
-export const EntryCombination = ({ numbers }) => {
+export const EntryCombination = ({ numbers }: Props) => {
   return (
     <div className={style.wrapper}>
       {numbers.map((key, j) => (
