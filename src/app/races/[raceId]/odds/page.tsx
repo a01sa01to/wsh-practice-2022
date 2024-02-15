@@ -17,6 +17,7 @@ export default async function Odds({ params }: { params: { raceId: string } }) {
   const { raceId } = params;
   const data = (await fetch(
     `https://wsh2022-practice-j5kcv767ma-an.a.run.app/api/races/${raceId}`,
+    { cache: "no-store" },
   ).then((res) => res.json())) as Model.Race;
 
   const isRaceClosed = dayjs(data.closeAt).isBefore(new Date());

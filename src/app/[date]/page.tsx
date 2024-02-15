@@ -22,6 +22,7 @@ export default async function DatePage({
   const { date } = params;
   const raceData = (await fetch(
     "https://wsh2022-practice-j5kcv767ma-an.a.run.app/api/races",
+    { cache: "no-store" },
   ).then((res) => res.json())) as {
     races: Model.Race[];
   };
