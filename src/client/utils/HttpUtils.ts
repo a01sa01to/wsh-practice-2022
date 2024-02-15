@@ -3,7 +3,7 @@ export const jsonFetcher = async (url: string) => {
     headers: { "Content-Type": "application/json" },
   }).then((res) => {
     if (!res.ok) {
-      throw new Error("failed to fetch");
+      throw res;
     }
     return res.json();
   });
@@ -16,7 +16,7 @@ export const authorizedJsonFetcher = async (url: string, userId: string) => {
     headers: { "Content-Type": "application/json", "x-app-userid": userId },
   }).then((res) => {
     if (!res.ok) {
-      throw new Error("failed to fetch");
+      throw res;
     }
     return res.json();
   });

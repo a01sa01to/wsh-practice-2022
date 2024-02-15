@@ -4,7 +4,7 @@ import { useAuth } from "../context/AuthContext";
 
 interface ReturnValues<T> {
   data: T | null;
-  error: Error | null;
+  error: Response | null;
   loading: boolean;
   revalidate: () => void;
 }

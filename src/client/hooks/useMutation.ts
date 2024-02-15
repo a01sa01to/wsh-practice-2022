@@ -9,7 +9,7 @@ interface UseMutationOptions {
 
 interface ReturnValues<T> {
   data: T | null;
-  error: Error | null;
+  error: Response | null;
   loading: boolean;
 }
 
@@ -39,11 +39,13 @@ export function useMutation<T>(
       try {
         const res = await fetch(apiPath, {
           body: JSON.stringify(data),
-          headers: auth ? { "x-app-userid": userId } : {},
+          headers: auth
+            ? { "Content-Type": "application/json", "x-app-userid": userId }
+            : { "Content-Type": "application/json" },
           method,
         }).then((res) => {
           if (!res.ok) {
-            throw new Error("failed to fetch");
+            throw res;
           }
           return res.json();
         });
