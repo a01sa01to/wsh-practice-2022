@@ -68,5 +68,8 @@
   "engines": {
     "node": "20.x.x"
   },
-  "packageManager": "yarn@4.1.0"
+  "packageManager": "yarn@4.1.0",
+  "browserslist": [
+    "last 10 chrome version"
+  ]
 }
